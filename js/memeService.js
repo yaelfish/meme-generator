@@ -3,6 +3,7 @@
 let gCurrCanvas = {};
 let gMemes = [];
 let gImgId = 0;
+let gCurrMeme = {};
 
 let gImgs = [
     {id: 1, url: '003.jpg', keywords: ['happy']},
@@ -26,6 +27,15 @@ let gMeme = {
 
 function loadImages() {
     return gImgs;
+}
+
+function setCurrentMeme(imgId) {
+    gMemes.forEach((meme)=> {
+        if (meme.selectedImgId === imgId){
+            gCurrMeme = meme;
+        }
+    });
+    return gCurrMeme;
 }
 
 function findTextToRender(imgId) {
@@ -58,7 +68,7 @@ function setCanvasPrefs() {
         lineWidth: '15',
         text: 'Hello World',
         font: 'meme-impact',
-        fontSize: 16
+        fontSize: 26
     }
 }
 

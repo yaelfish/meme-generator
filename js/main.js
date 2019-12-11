@@ -38,14 +38,18 @@ function initCanvas() {
     gCtx = gCanvas.getContext('2d');
     gCtx.fillStyle = 'black';
     drawImg();
-    drawText('This is the top', gCanvas.width / 2, 20);
-    drawText('This is the bottom', gCanvas.width / 2, gCanvas.height - 20);
+    setCurrentMeme(gCurrImg.id);
+    drawText(gMeme.txts[0]["line"], gCanvas.width / 2, gCanvas.height - 20);
+    // drawText('This is the bottom', gCanvas.width / 2, gCanvas.height - 20);
+}
+
+function onInputUpdate(val){
+    initCanvas();
+    drawText(val, gCanvas.width / 2, 20);
 }
 
 function drawImg() {
     if (gElIng) {
-        let src = `images/gallery/${gCurrImg.url}`;
-       
         gCtx.drawImage(gElIng, 0, 0, gCanvas.width, gCanvas.height)
     }
     else {

@@ -35,7 +35,7 @@
     <section class="canvas-gen-container">
         <div class="canvas-controls">
             <label for="text">Enter text:</label>
-            <input type="text" name="text" id="text" placeholder="Your awesome text goes here" onkeyup="drawText(event, this.value)">
+            <input type="text" name="text" id="text" placeholder="Your awesome text goes here" onkeyup="onInputUpdate(this.value)">
         </div>
         <div class="canvas-container">
             <canvas id="meme-canvas" width="500" height="500" onclick="draw(event)">
