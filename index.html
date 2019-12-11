@@ -5,9 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Meme Generator</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
-<body>
-    <main class="gallery-container"></main>
-    <section class="canvas-gen-container"></section>
+<body onload="init()">
+    <header class="main-header">
+        <div class="main-header-container container flex space-between align-center">
+            <a class="logo main-logo" href="#">
+                <span>memegen</span>
+                <img src="./images/logo.png" alt="MEMEGEN" hidden>
+            </a>
+            <div class="nav-icon" onclick="toggleMenu()">
+                <div></div>
+            </div>
+            <nav class="main-nav">
+                <ul class="main-nav-ul clean-list flex">
+                    <li>
+                        <a class="flex align-center justify-center dropbtn active" href="#">Gallery</a>
+                    </li>
+                    <li>
+                        <a class="flex align-center justify-center" href="#">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="gallery-container flex justify-center">
+        <div class="img-container">
+            <img src="./images/gallery/003.jpg" data-img="003.jpg" onclick="onChosenImg(this)">
+        </div>
+        <div class="img-container">
+            <img src="./images/gallery/004.jpg" onclick="onChosenImg(this)">
+        </div>
+        
+    </main>
+    <section class="canvas-gen-container">
+        <div class="canvas-container">
+            <canvas id="meme-canvas" width="500" height="500" onclick="draw(event)">
+                Update your browser to enjoy canvas!
+            </canvas>
+        </div>
+    </section>
+    <footer></footer>
+
+    <script src="./js/memeService.js"></script>
+    <script src="./js/memeController.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>

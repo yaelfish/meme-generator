@@ -1,0 +1,154 @@
+/* Fonts */
+
+@font-face {
+    font-family: 'meme-impact';
+    src: url('../fonts/impact.ttf');
+}
+
+/* Base */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+
+body {
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+p {
+    margin: 0 0 2.75rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Layout */
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+header, footer {
+    background-color: #ff7f00;
+}
+
+.img-container {
+    width: 500px;
+    height: 500px;
+}
+
+.img-container img {
+    width: 500px;
+    height: 500px;
+}
+
+.canvas-gen-container {
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Helpers */
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+/* flex helpers */
+
+.flex {
+    display: flex;
+}
+
+.flex.column {
+    flex-direction: column;
+}
+
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+/* list helpers */
+
+.clean-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Header + Nav */
+
+.main-header {
+    height: 130px;
+    box-shadow: inset 0 -6px 0 #1e1e1e;
+}
+
+.main-nav-ul>* a {
+    cursor: pointer;
+    height: 130px;
+    width: 130px;
+    transition: 0.6s;
+}
+
+.main-logo {
+    font-size: 2.5rem;
+    letter-spacing: -0.8px;
+}
+
+.main-nav-ul>*.active {
+    color: black;
+    cursor: default;
+}
+
+.main-nav-ul>*.active:hover {
+    border-bottom: 0;
+}
+
+.main-nav-ul>*:hover {
+    color: black;
+}
+
+/* Canvas mode */
+
+body.canvas-open .gallery-container {
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+}
+
+body.canvas-open .canvas-gen-container {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
