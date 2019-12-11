@@ -36,10 +36,15 @@
         <div class="canvas-controls">
             <label for="text">Enter text:</label>
             <input type="text" name="text" id="text" placeholder="Your awesome text goes here" onkeyup="onInputUpdate(this.value)">
-            <label for="font-size">Font Size</label>
+            <div class="move-lines-controls flex">
+                <label>Move lines:</label>
+                <button class="line-up move-lines" onclick="onMoveLinesUpDown(-10)">up</button>
+                <button class="line-down move-lines" onclick="onMoveLinesUpDown(10)">down</button>
+            </div>
             <div class="font-size-controls flex">
-                <button class="font-decrease font-size-btn" name="font-size" onclick="onChangeFontSize(-1)"></button>
-                <button class="font-increase font-size-btn" name="font-size" onclick="onChangeFontSize(1)"></button>
+                <label>Font Size</label>
+                <button class="font-decrease font-size-btn" onclick="onChangeFontSize(-1)"></button>
+                <button class="font-increase font-size-btn" onclick="onChangeFontSize(1)"></button>
             </div>
         </div>
         <div class="canvas-container">

@@ -13,7 +13,7 @@
 
 html {
     font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
+    color: #000000;
 }
 
 body {
@@ -49,6 +49,7 @@ a {
 
 header, footer {
     background-color: #ff7f00;
+    color: #ffffff;
 }
 
 .img-container {
@@ -67,7 +68,7 @@ header, footer {
 }
 
 .canvas-controls {
-    float: right;
+    /* float: right; */
 }
 
 /* Helpers */
@@ -178,4 +179,14 @@ body.canvas-open .canvas-gen-container {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+.move-lines {
+    width: 60px;
+    height: 50px;
+    border-radius: 7px;
+    margin: 5px;
+   text-align: center;
+    border: none;
+    text-transform: uppercase;
 }

@@ -42,6 +42,11 @@ function onChangeFontSize(diff) {
     drawText(inputValue, gCanvas.width / 2, 20);
 }
 
+function onMoveLinesUpDown(diff) {
+    renderCanvas();
+    drawText(gCurrCanvas.text, gLastX, gLastY += diff); 
+}
+
 function renderCanvas() {
     gCanvas = document.querySelector('#meme-canvas');
     gCtx = gCanvas.getContext('2d');
@@ -49,12 +54,14 @@ function renderCanvas() {
     drawImg();
     setCurrentMeme(gCurrImg.id);
     drawText(gMeme.txts[0]["line"], gCanvas.width / 2, gCanvas.height - 20);
-    // drawText('This is the bottom', gCanvas.width / 2, gCanvas.height - 20);
 }
 
 function onInputUpdate(val){
     renderCanvas();
-    drawText(val, gCanvas.width / 2, 20);
+    gCurrCanvas.text = val;
+    gLastX = gCanvas.width / 2;
+    gLastY = 20;
+    drawText(gCurrCanvas.text, gLastX, gLastY);
 }
 
 function drawImg() {
@@ -71,11 +78,8 @@ function drawImg() {
 }
 
 function drawText(text, x, y) {
-    // const offsetX = event.offsetX;
-    // const offsetY = event.offsetY;
-    
     gCtx.save()
-    gCtx.font = `${gCurrCanvas.fontSize}px ${gCurrCanvas.font}`;
+    gCtx.font = `${gCurrCanvas.fontSize}px meme-impact`;
     gCtx.strokeStyle = gCurrCanvas.color;
     gCtx.fillStyle = gCurrCanvas.bgColor;
     gCtx.textAlign = 'center';
