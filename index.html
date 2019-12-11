@@ -36,6 +36,11 @@
         <div class="canvas-controls">
             <label for="text">Enter text:</label>
             <input type="text" name="text" id="text" placeholder="Your awesome text goes here" onkeyup="onInputUpdate(this.value)">
+            <label for="font-size">Font Size</label>
+            <div class="font-size-controls flex">
+                <button class="font-decrease font-size-btn" name="font-size" onclick="onChangeFontSize(-1)"></button>
+                <button class="font-increase font-size-btn" name="font-size" onclick="onChangeFontSize(1)"></button>
+            </div>
         </div>
         <div class="canvas-container">
             <canvas id="meme-canvas" width="500" height="500" onclick="draw(event)">

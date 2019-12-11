@@ -30,10 +30,19 @@ function onChosenImg(elImg,imgId) {
     document.body.classList.add('canvas-open');
     gCurrImg = findImgById(imgId);
     gElIng = elImg;
-    initCanvas();
+    renderCanvas();
 }
 
-function initCanvas() {
+function onChangeFontSize(diff) {
+    renderCanvas();
+    gMeme.txts[0]["size"] += diff;
+    gCurrCanvas.fontSize = gMeme.txts[0]["size"];
+    let elInput = document.querySelector('#text');
+    let inputValue = elInput.value;
+    drawText(inputValue, gCanvas.width / 2, 20);
+}
+
+function renderCanvas() {
     gCanvas = document.querySelector('#meme-canvas');
     gCtx = gCanvas.getContext('2d');
     gCtx.fillStyle = 'black';
@@ -44,7 +53,7 @@ function initCanvas() {
 }
 
 function onInputUpdate(val){
-    initCanvas();
+    renderCanvas();
     drawText(val, gCanvas.width / 2, 20);
 }
 

@@ -156,3 +156,26 @@ body.canvas-open .canvas-gen-container {
     opacity: 1;
     display: block;
 }
+
+.font-size-btn {
+    width: 60px;
+    height: 50px;
+    border-radius: 7px;
+    margin: 5px;
+    padding: 20px;
+    border: none;
+}
+
+.font-decrease {
+    background-image: url('../images/icons/decrease\ font\ -\ icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.font-increase {
+    background-image: url('../images/icons/increase\ font\ -\ icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
