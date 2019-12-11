@@ -66,6 +66,10 @@ header, footer {
     opacity: 0;
 }
 
+.canvas-controls {
+    float: right;
+}
+
 /* Helpers */
 
 .responsive {

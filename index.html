@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Meme Generator</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/style.css">
 </head>
@@ -21,7 +22,7 @@
             <nav class="main-nav">
                 <ul class="main-nav-ul clean-list flex">
                     <li>
-                        <a class="flex align-center justify-center dropbtn active" href="#">Gallery</a>
+                        <a class="flex align-center justify-center active" href="#">Gallery</a>
                     </li>
                     <li>
                         <a class="flex align-center justify-center" href="#">About</a>
@@ -30,16 +31,12 @@
             </nav>
         </div>
     </header>
-    <main class="gallery-container flex justify-center">
-        <div class="img-container">
-            <img src="./images/gallery/003.jpg" data-img="003.jpg" onclick="onChosenImg(this)">
-        </div>
-        <div class="img-container">
-            <img src="./images/gallery/004.jpg" onclick="onChosenImg(this)">
-        </div>
-        
-    </main>
+    <main class="gallery-container flex justify-center"></main>
     <section class="canvas-gen-container">
+        <div class="canvas-controls">
+            <label for="text">Enter text:</label>
+            <input type="text" name="text" id="text" placeholder="Your awesome text goes here" onkeyup="drawText(event, this.value)">
+        </div>
         <div class="canvas-container">
             <canvas id="meme-canvas" width="500" height="500" onclick="draw(event)">
                 Update your browser to enjoy canvas!
