@@ -62,6 +62,7 @@ function renderCanvas() {
 }
 
 function drawTexts() {
+    
     for (let i = 0; i < gMeme.txts.length; i++) {
         const text = gMeme.txts[i];
         drawText(text.line, text.size, text.align, text.baseline, text.posX, text.posY, text.color, text.bgColor,text.fontFamily)
@@ -76,11 +77,14 @@ function onInputUpdate(val){
 function onAddLine() { 
     onSwitchLines();
     document.querySelector('#text').focus(); 
+    
     let val = '';
     onInputUpdate(val);
+    
     let baseline = 'top';
     let posX = gCanvas.width / 2;
     let posY = 40;
+    
     if (gCurrTxtLine === 0){
         baseline = 'top';
         posY = 40;
@@ -98,6 +102,8 @@ function onAddLine() {
 
 function onSwitchLines(){ 
     setNewCurrentLine();
+    document.querySelector('#text').value = gMeme.txts[gCurrTxtLine].line;
+    document.querySelector('#text').focus(); 
     renderCanvas();
 }
 

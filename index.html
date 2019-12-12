@@ -35,10 +35,9 @@
     <section class="canvas-gen-container">
         <div class="canvas-controls">
             <label for="text">Enter text:</label>
-            <input type="text" name="text" id="text" placeholder="Your awesome text goes here" 
-            oninput="onInputUpdate(this.value)">
+            <input type="text" name="text" id="text" class="text-input" placeholder="Your awesome text goes here" oninput="onInputUpdate(this.value)" value="">
             <div class="move-lines-controls flex">
-                <button class="add-line" onclick="onAddLine()"></button>
+                <!-- <button class="add-line" onclick="onAddLine()"></button> -->
                 <button class="switch-lines" onclick="onSwitchLines()"></button>
             </div>
             <div class="move-lines-controls flex">
@@ -72,6 +71,17 @@
                     <option value="Verdana">Verdana</option>
                 </select>
             </div>
+            
+            <div class="download-share">
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <button class="btn" type="submit">Publish</button>
+                    <div class="share-container"></div>
+                </form>
+                
+                <a href="#" class="btn" onclick="downloadImg(this)" download="my-canvas.jpg">Download as jpeg</a>
+            </div>
+
         </div>
         <div class="canvas-container">
             <canvas id="meme-canvas" width="500" height="500" onclick="draw(event)">
