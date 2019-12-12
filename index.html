@@ -37,8 +37,10 @@
             <label for="text">Enter text:</label>
             <input type="text" name="text" id="text" placeholder="Your awesome text goes here" 
             oninput="onInputUpdate(this.value)">
-            <button class="add-line" onclick="onAddLine()"></button>
-            <button class="switch-lines" onclick="onSwitchLines()"></button>
+            <div class="move-lines-controls flex">
+                <button class="add-line" onclick="onAddLine()"></button>
+                <button class="switch-lines" onclick="onSwitchLines()"></button>
+            </div>
             <div class="move-lines-controls flex">
                 <label>Move lines:</label>
                 <button class="line-up move-lines" onclick="onMoveLinesUpDown(-10)">up</button>

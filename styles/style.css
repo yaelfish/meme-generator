@@ -134,6 +134,12 @@ body.canvas-open .canvas-gen-container {
     visibility: visible;
     opacity: 1;
     display: block;
+    display: flex;
+}
+
+.canvas-controls {
+    font-size: 1.4rem;
+    padding: 1em;
 }
 
 .font-size-btn {
@@ -220,6 +226,15 @@ body.canvas-open .canvas-gen-container {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+#txt {
+    display: flex;
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 1em;
+    font-size: 1.4rem;
+    border-radius: 4px;
 }
 
 /* Gallery */
