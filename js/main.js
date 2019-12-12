@@ -40,6 +40,11 @@ function onChangeFontSize(diff) {
     renderCanvas();
 }
 
+function onChangeTextAlign(direction) {
+    setTextAlign(direction);
+    renderCanvas();
+}
+
 function onMoveLinesUpDown(diff) { 
     gMeme.txts[gCurrTxtLine].posY += diff;
     renderCanvas();
@@ -51,13 +56,15 @@ function renderCanvas() {
     gCtx.fillStyle = 'white';
     gCtx.strokeStyle = 'black'; 
     drawImg();
-    drawTexts();
+    if(gMeme.txts.length > 0){
+        drawTexts();
+    }
 }
 
 function drawTexts() {
     for (let i = 0; i < gMeme.txts.length; i++) {
         const text = gMeme.txts[i];
-        drawText(text.line, text.size, text.align, text.baseline, text.posX, text.posY, text.color, text.bgColor)
+        drawText(text.line, text.size, text.align, text.baseline, text.posX, text.posY, text.color, text.bgColor,text.fontFamily)
     }
 }
 
@@ -67,16 +74,13 @@ function onInputUpdate(val){
 }
 
 function onAddLine() { 
-    // debugger
     onSwitchLines();
-    // let val = document.querySelector('#text').value;
     document.querySelector('#text').focus(); 
     let val = '';
     onInputUpdate(val);
     let baseline = 'top';
     let posX = gCanvas.width / 2;
     let posY = 40;
-    gMeme.selectedTxtIdx = gCurrTxtLine;
     if (gCurrTxtLine === 0){
         baseline = 'top';
         posY = 40;
@@ -88,13 +92,11 @@ function onAddLine() {
         posY = gCanvas.height / 2;
     }
     addLine(val, 35, 'center', baseline, posX, posY, 'black', 'white');
-    // renderCanvas();
-    // drawText(gMeme.txts[gCurrTxtLine].line, posX, posY);
     document.querySelector('#text').value = '';
     document.querySelector('#text').focus(); 
 }
 
-function onSwitchLines(){
+function onSwitchLines(){ 
     setNewCurrentLine();
     renderCanvas();
 }
@@ -112,10 +114,10 @@ function drawImg() {
     }
 }
 
-function drawText(text, size, align, baseline, posX, posY, color, bgColor) { // gets an object to render from - color everythimg
+function drawText(text, size, align, baseline, posX, posY, color, bgColor, fontFamily = 'impact') { // gets an object to render from - color everythimg
     console.log('hey')
     gCtx.save()
-    gCtx.font = `${size}px impact`;
+    gCtx.font = `${size}px ${fontFamily}`;
     gCtx.lineWidth = 2;
     // let lineHeight = gCtx.measureText('M').width;
     // ctx.globalAlpha = 0.5;
@@ -133,6 +135,22 @@ function drawText(text, size, align, baseline, posX, posY, color, bgColor) { // 
     gCtx.strokeText(text, posX, posY);
     gCtx.restore()
 }
+
+function onChangeColor(val) {
+    setColor(val);
+    renderCanvas();
+}
+
+function onChangeBgColor(val) {
+    setBgColor(val);
+    renderCanvas();
+}
+
+function onChangeFontFamily() {
+    let selectedFont = document.querySelector('select[name="font-family"]').value;
+    setFontFamily(selectedFont);
+}
+
 
 function draw(ev) {
     gCtx.save()

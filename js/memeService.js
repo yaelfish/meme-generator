@@ -30,13 +30,13 @@ let gMeme = {
     selectedImgId: 4,
     selectedTxtIdx: 0,
     txts: [
-        createTxtObject('', 40, 'center', 'top', 200, 20, 'black', 'white'), 
-        createTxtObject('', 40, 'center', 'bottom', 200, 460, 'black', 'white'),
-        createTxtObject('', 40, 'center', 'middle', 200, 200, 'black', 'white')
+        createTxtObject('', 40, 'center', 'top', 200, 20, 'black', 'white', 'impact'), 
+        createTxtObject('', 40, 'center', 'bottom', 200, 460, 'black', 'white', 'impact'),
+        createTxtObject('', 40, 'center', 'middle', 200, 200, 'black', 'white', 'impact')
     ]
 };
 
-function createTxtObject(line = '', size = 30, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white') {
+function createTxtObject(line = '', size = 30, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white', fontFamily = 'impact') {
     return {
         id: gId++,
         line,
@@ -46,12 +46,13 @@ function createTxtObject(line = '', size = 30, align = 'center', baseline = 'mid
         posX,
         posY,
         color,
-        bgColor
+        bgColor,
+        fontFamily
     }
 }
 
-function addLine(line = '', size = 30, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white') {
-    gMeme.txts.push(createTxtObject(line, size, align, baseline, posX, posY, color, bgColor))
+function addLine(line = '', size = 30, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white', fontFamily = 'impact') {
+    gMeme.txts.push(createTxtObject(line, size, align, baseline, posX, posY, color, bgColor, fontFamily))
 }
 
 function loadImages() {
@@ -72,13 +73,13 @@ function saveInputDetails(val) {
 }
 
 function setNewCurrentLine() {
-
     if (gCurrTxtLine === gMeme.txts.length){
         gCurrTxtLine = 0;
     }
     else {
         gCurrTxtLine++;
     }
+    gMeme.selectedTxtIdx = gCurrTxtLine;
 }
 
 function setCanvasPrefs() {
@@ -97,12 +98,16 @@ function setShape(shape) {
     gCurrCanvas.shape = shape;
 }
 
-function setColor(color) {
-    gCurrCanvas.color = color;
+function setTextAlign(val) {
+    gMeme.txts[gCurrTxtLine].align = val;
 }
 
-function setBgColor(bgColor) {
-    gCurrCanvas.bgColor = bgColor;
+function setBgColor(val) {
+    gMeme.txts[gCurrTxtLine].bgColor = val;
+}
+
+function setFontFamily(val) {
+    gMeme.txts[gCurrTxtLine].fontFamily = val;
 }
 
 function setLineWidth(lineWidth) {
