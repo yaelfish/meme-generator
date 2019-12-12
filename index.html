@@ -34,38 +34,27 @@
     <main class="gallery-container flex justify-center"></main>
     <section class="canvas-gen-container">
         <div class="canvas-controls">
-            <!-- <label for="text">Enter text:</label> -->
             <input type="text" name="text" id="text" class="text-input" placeholder="Your awesome text goes here" oninput="onInputUpdate(this.value)" value="">
-            <!-- <div class="move-lines-controls flex">
-                 <button class="add-line" onclick="onAddLine()"></button> 
-                
-            </div> -->
             <div class="move-lines-controls flex">
-                <!-- <label>Move lines:</label> -->
                 <button class="switch-lines" onclick="onSwitchLines()"></button>
                 <button class="line-up move-lines" onclick="onMoveLinesUpDown(-10)">up</button>
                 <button class="line-down move-lines" onclick="onMoveLinesUpDown(10)">down</button>
             </div>
             <div class="text-align-controls flex">
-                <!-- <label>Text Align</label> -->
                 <button class="text-align-right text-align-btn" onclick="onChangeTextAlign('right')"></button>
                 <button class="text-align-center text-align-btn" onclick="onChangeTextAlign('center')"></button>
                 <button class="text-align-left text-align-btn" onclick="onChangeTextAlign('left')"></button>
             </div>
             <div class="font-size-controls flex">
-                <!-- <label>Font Size</label> -->
                 <button class="font-decrease font-size-btn" onclick="onChangeFontSize(-1)"></button>
                 <button class="font-increase font-size-btn" onclick="onChangeFontSize(1)"></button>
                 <button class="delete" onclick="onDeleteLine()"></button>
             </div>
             <div class="font-colors-controls flex">
-                <!-- <label for="bg-color">Background color:</label> -->
                 <input type="color" id="bg-color-input" name="bg-color" onchange="onChangeBgColor(this.value)">
-                <!-- <label for="txt-color">Font color:</label> -->
                 <input type="color" id="txt-color-input" name="txt-color" onchange="onChangeColor(this.value)">
             </div>
             <div class="font-family-controls flex">
-                <!-- <label for="font-family">font-family</label> -->
                 <select name="font-family" id="font-family-input" onchange="onChangeFontFamily(this.value)">
                     <option value="meme-impact">Impact</option>
                     <option value="Arial">Arial</option>
@@ -75,12 +64,6 @@
             </div>
             
             <div class="download-share">
-                <!-- <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                    <input name="img" id="imgData" type="hidden" />
-                    <button class="btn" type="submit">Publish</button>
-                    <div class="share-container"></div>
-                </form> -->
-                
                 <a href="#" class="btn btn-download" onclick="downloadImg(this)" download="my-canvas.jpg">Download Meme</a>
             </div>
 

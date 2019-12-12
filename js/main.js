@@ -74,32 +74,6 @@ function onInputUpdate(val){
     renderCanvas();
 }
 
-function onAddLine() { 
-    onSwitchLines();
-    document.querySelector('#text').focus(); 
-    
-    let val = '';
-    onInputUpdate(val);
-    
-    let baseline = 'top';
-    let posX = gCanvas.width / 2;
-    let posY = 40;
-    
-    if (gCurrTxtLine === 0){
-        baseline = 'top';
-        posY = 40;
-    } else if (gCurrTxtLine === 1) {
-        baseline = 'bottom';
-        posY = gCanvas.height - 40;
-    } else {
-        baseline = 'middle';
-        posY = gCanvas.height / 2;
-    }
-    addLine(val, 35, 'center', baseline, posX, posY, 'black', 'white');
-    document.querySelector('#text').value = '';
-    document.querySelector('#text').focus(); 
-}
-
 function onSwitchLines(){ 
     setNewCurrentLine();
     document.querySelector('#text').value = gMeme.txts[gCurrTxtLine].line;
@@ -126,8 +100,7 @@ function drawImg() {
     }
 }
 
-function drawText(text, size, align, baseline, posX, posY, color, bgColor, fontFamily = 'impact') { // gets an object to render from - color everythimg
-    console.log('hey')
+function drawText(text, size, align, baseline, posX, posY, color, bgColor, fontFamily = 'impact') { 
     gCtx.save()
     gCtx.font = `${size}px ${fontFamily}`;
     gCtx.lineWidth = 2;
@@ -142,7 +115,7 @@ function drawText(text, size, align, baseline, posX, posY, color, bgColor, fontF
 
 function drawRect(x, y) {
     gCtx.save()
-    gCtx.strokeStyle = gCurrCanvas.color;
+    gCtx.strokeStyle = "white";
     gCtx.fillStyle = "rgba(255,255,255,0.3)";
     gCtx.beginPath();
     gCtx.rect(0, y, gCanvas.width, 40)
@@ -175,28 +148,5 @@ function onDeleteLine() {
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
-    // You may clear part of the canvas
-    // gCtx.clearRect(50, 50, 100, 100)
 }
 
-function draw(ev) {
-    gCtx.save()
-    const offsetX = ev.offsetX
-    const offsetY = ev.offsetY
-
-    switch (gCurrCanvas.shape) {
-        case 'triangle':
-            drawTriangle(offsetX, offsetY)
-            break;
-        case 'rectangle':
-            drawRect(offsetX, offsetY)
-            break;
-        case 'text':
-            drawText(gCurrCanvas.text, offsetX, offsetY)
-            break;
-        case 'line':
-            drawLine(offsetX, offsetY)
-            break;
-    }
-    gCtx.restore()
-}

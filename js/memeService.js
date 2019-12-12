@@ -1,9 +1,4 @@
 'use strict';
-
-let gCurrCanvas = {};
-let gCurrMeme = {};
-let gMemes = [];
-let gImgId = 0;
 let gId = 0;
 
 let gImgs = [
@@ -61,25 +56,11 @@ function downloadImg(elLink) {
     elLink.href = imgContent
 }
 
-// function addLine(line = '', size = 30, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white', fontFamily = 'impact') {
-//     // gMeme.txts.push(createTxtObject(line, size, align, baseline, posX, posY, color, bgColor, fontFamily))
-//     gMeme.txts[gCurrTxtLine]
-// }
-
 function loadImages() {
     return gImgs;
 }
 
-function findTextToRender(imgId) {
-    let textToRender;
-    gMemes.forEach((meme)=> {
-        if(meme.selectedImgId === imgId) textToRender = meme.txts[0]
-    });
-    return textToRender;
-}
-
 function saveInputDetails(val) {
-    // gCurrCanvas.text = val;
     gMeme.txts[gCurrTxtLine].line = val;
 }
 
@@ -91,22 +72,6 @@ function setNewCurrentLine() {
         gCurrTxtLine++;
     }
     gMeme.selectedTxtIdx = gCurrTxtLine;
-}
-
-function setCanvasPrefs() {
-    return gCurrCanvas = {
-        color: '#000000',
-        bgColor: '#ffffff',
-        shape: 'text',
-        lineWidth: '15',
-        text: 'Hello World',
-        font: 'meme-impact',
-        fontSize: 40
-    }
-}
-
-function setShape(shape) {
-    gCurrCanvas.shape = shape;
 }
 
 function setTextAlign(val) {
@@ -125,61 +90,9 @@ function setFontFamily(val) {
     gMeme.txts[gCurrTxtLine].fontFamily = val;
 }
 
-function setLineWidth(lineWidth) {
-    gCurrCanvas.lineWidth = lineWidth;
-}
 
-function setText(text) {
-    gCurrCanvas.text = text;
-}
 
-function setFontSize(fontSize) {
-    gCurrCanvas.fontSize = fontSize;
-}
 
-function createImages() {
-    gImages.unshift(createImage('5.jpg', ['happy', 'in awe']));
-    gImages.unshift(createImage('8.jpg', ['cute', 'puppy']));
-    gImages.unshift(createImage('9.jpg', ['overwhelming', 'funny']));
-}
 
-function createImage(url, keywords) {
-    let img = {
-        id: gImgId++,
-        url: url,
-        keywords: keywords
-    }
-    return img;
-}
 
-function createMeme(selectedImgId, selectedTxtIdx, txts) {
-    let gMeme = {
-        selectedImgId,
-        selectedTxtIdx,
-        txts
-    }
-    return gMeme;
-}
 
-// function findImgById(imgId) {
-//     let imgToReturn = {};
-//     gImgs.forEach((img) => {
-//         if(img.id === imgId) {
-//             imgToReturn = img;
-//         }
-//     });
-//     return imgToReturn;
-// }
-
-// function setCurrentMeme(imgId) {
-//     gMemes.forEach((meme)=> {
-//         if (meme.selectedImgId === imgId){
-//             gCurrMeme = meme;
-//         }
-//     });
-//     return gCurrMeme;
-// }
-
-// function getCurrCanvas() {
-//     return gCurrCanvas;
-// }
