@@ -22,7 +22,7 @@
             <nav class="main-nav">
                 <ul class="main-nav-ul clean-list flex">
                     <li>
-                        <a class="flex align-center justify-center active" href="#">Gallery</a>
+                        <a class="flex align-center justify-center active" href="#" onclick="onGalleryOpen(this)">Gallery</a>
                     </li>
                     <li>
                         <a class="flex align-center justify-center" href="#">About</a>
@@ -35,7 +35,10 @@
     <section class="canvas-gen-container">
         <div class="canvas-controls">
             <label for="text">Enter text:</label>
-            <input type="text" name="text" id="text" placeholder="Your awesome text goes here" onkeyup="onInputUpdate(this.value)">
+            <input type="text" name="text" id="text" placeholder="Your awesome text goes here" 
+            oninput="onInputUpdate(this.value)">
+            <button class="add-line" onclick="onAddLine()">+</button>
+            <button class="switch-lines" onclick="onSwitchLines()"></button>
             <div class="move-lines-controls flex">
                 <label>Move lines:</label>
                 <button class="line-up move-lines" onclick="onMoveLinesUpDown(-10)">up</button>
@@ -53,10 +56,11 @@
             </canvas>
         </div>
     </section>
-    <footer></footer>
+    <footer class="flex justify-center align-center">
+        @All Rights Reserved 2019
+    </footer>
 
     <script src="./js/memeService.js"></script>
-    <script src="./js/memeController.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

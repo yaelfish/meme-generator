@@ -1,41 +1,61 @@
 'use strict';
 
 let gCurrCanvas = {};
+let gCurrMeme = {};
 let gMemes = [];
 let gImgId = 0;
-let gCurrMeme = {};
+let gId = 0;
 
 let gImgs = [
-    {id: 1, url: '003.jpg', keywords: ['happy']},
-    {id: 2, url: '004.jpg', keywords: ['wow'] }
+    {id: 1, url: '1.jpg', keywords: ['happy']},
+    {id: 2, url: '2.jpg', keywords: ['wow'] },
+    { id: 3, url: '3.jpg', keywords: ['sad'] },
+    { id: 4, url: '4.jpg', keywords: ['exciting'] },
+    { id: 5, url: '5.jpg', keywords: ['cute'] },
+    { id: 6, url: '6.jpg', keywords: ['cute'] },
+    { id: 7, url: '7.jpg', keywords: ['happy'] },
+    { id: 8, url: '8.jpg', keywords: ['exciting'] },
+    { id: 9, url: '9.jpg', keywords: ['exciting'] },
+    { id: 10, url: '10.jpg', keywords: ['happy'] },
+    { id: 11, url: '11.jpg', keywords: ['happy'] },
+    { id: 12, url: '12.jpg', keywords: ['happy'] },
+    { id: 13, url: '13.jpg', keywords: ['happy'] },
+    { id: 14, url: '14.jpg', keywords: ['happy'] },
+    { id: 15, url: '15.jpg', keywords: ['happy'] },
+    { id: 16, url: '16.jpg', keywords: ['happy'] },
+    { id: 17, url: '17.jpg', keywords: ['happy'] },
 ];
 
 let gMeme = {
     selectedImgId: 4,
     selectedTxtIdx: 0,
     txts: [
-        {
-            line: 'I never eat Falafel',
-            size: 20,
-            align: 'left',
-            color: 'red'
-        }
+        createTxtObject('', 40, 'center', 'top', 200, 20, 'black', 'white'), 
+        createTxtObject('', 40, 'center', 'bottom', 200, 460, 'black', 'white'),
+        createTxtObject('', 40, 'center', 'middle', 200, 200, 'black', 'white')
     ]
 };
 
+function createTxtObject(line = '', size = 30, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white') {
+    return {
+        id: gId++,
+        line,
+        size,
+        align,
+        baseline,
+        posX,
+        posY,
+        color,
+        bgColor
+    }
+}
 
+function addLine(line = '', size = 30, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white') {
+    gMeme.txts.push(createTxtObject(line, size, align, baseline, posX, posY, color, bgColor))
+}
 
 function loadImages() {
     return gImgs;
-}
-
-function setCurrentMeme(imgId) {
-    gMemes.forEach((meme)=> {
-        if (meme.selectedImgId === imgId){
-            gCurrMeme = meme;
-        }
-    });
-    return gCurrMeme;
 }
 
 function findTextToRender(imgId) {
@@ -46,18 +66,19 @@ function findTextToRender(imgId) {
     return textToRender;
 }
 
-function findImgById(imgId) {
-    let imgToReturn = {};
-    gImgs.forEach((img) => {
-        if(img.id === imgId) {
-            imgToReturn = img;
-        }
-    });
-    return imgToReturn;
+function saveInputDetails(val) {
+    gCurrCanvas.text = val;
+    gMeme.txts[gCurrTxtLine].line = val;
 }
 
-function findImgByIdx(params) {
+function setNewCurrentLine() {
 
+    if (gCurrTxtLine === gMeme.txts.length){
+        gCurrTxtLine = 0;
+    }
+    else {
+        gCurrTxtLine++;
+    }
 }
 
 function setCanvasPrefs() {
@@ -68,55 +89,8 @@ function setCanvasPrefs() {
         lineWidth: '15',
         text: 'Hello World',
         font: 'meme-impact',
-        fontSize: 26
+        fontSize: 40
     }
-}
-
-function createImages() {
-    gImages.unshift(createImage('5.jpg', ['happy','in awe']));
-    gImages.unshift(createImage('8.jpg', ['cute', 'puppy']));
-    gImages.unshift(createImage('9.jpg', ['overwhelming', 'funny']));
-}
-
-function createImage(url, keywords) {
-    let img = {
-        id: gImgId++,
-        url: url,
-        keywords: keywords
-    }
-    return img;
-}
-
-function createMeme(selectedImgId, selectedTxtIdx, txts){
-    let gMeme = {
-        selectedImgId, 
-        selectedTxtIdx, 
-        txts
-    }
-    return gMeme;
-}
-
-function createMemes() {
-    gMemes.unshift(createMeme(1, 0, 'I never eat Falafel'));
-}
-
-
-function loadMemes() {
-    createMemes();
-}
-
-function createTxt(line, size, align, color) {
-    let gTxt = {
-        line,
-        size,
-        align,
-        color
-    }
-    return gTxt;
-}
-
-function createTxts() {
-    gTexts.unshift('I never eat Falafel', 20, 'left', '#FFBBFF')
 }
 
 function setShape(shape) {
@@ -143,6 +117,49 @@ function setFontSize(fontSize) {
     gCurrCanvas.fontSize = fontSize;
 }
 
-function getCurrCanvas() {
-    return gCurrCanvas;
+function createImages() {
+    gImages.unshift(createImage('5.jpg', ['happy', 'in awe']));
+    gImages.unshift(createImage('8.jpg', ['cute', 'puppy']));
+    gImages.unshift(createImage('9.jpg', ['overwhelming', 'funny']));
 }
+
+function createImage(url, keywords) {
+    let img = {
+        id: gImgId++,
+        url: url,
+        keywords: keywords
+    }
+    return img;
+}
+
+function createMeme(selectedImgId, selectedTxtIdx, txts) {
+    let gMeme = {
+        selectedImgId,
+        selectedTxtIdx,
+        txts
+    }
+    return gMeme;
+}
+
+// function findImgById(imgId) {
+//     let imgToReturn = {};
+//     gImgs.forEach((img) => {
+//         if(img.id === imgId) {
+//             imgToReturn = img;
+//         }
+//     });
+//     return imgToReturn;
+// }
+
+// function setCurrentMeme(imgId) {
+//     gMemes.forEach((meme)=> {
+//         if (meme.selectedImgId === imgId){
+//             gCurrMeme = meme;
+//         }
+//     });
+//     return gCurrMeme;
+// }
+
+// function getCurrCanvas() {
+//     return gCurrCanvas;
+// }

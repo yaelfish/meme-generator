@@ -1,16 +1,19 @@
 'use strict';
 
-let gCanvas;
-let gCtx, gImg;
-let gCurrImg;
-let gElIng;
+let gCanvas, gCtx;
+let gElImg;
 let gLastX = 0;
 let gLastY = 0;
-
+let gCurrTxtLine = 0;
 
 function init(){
     loadImages();
     renderImages();
+}
+
+function onGalleryOpen(el) {
+    document.body.classList.remove('canvas-open');
+    el.classList.add('active');
 }
 
 function renderImages() {
@@ -19,74 +22,115 @@ function renderImages() {
     let imgs = gImgs.map((img)=> {
         strHtml+= `
         <div class="img-container">
-            <img src="./images/gallery/${img.url}" data-img="${img.id}" onclick="onChosenImg(this,${img.id})">
-        </div>\n
-        `
+            <img src="./images/gallery/${img.url}" data-img="${img.id}" onclick="onChosenImg(this)">
+        </div>\n`
     });
     elGallery.innerHTML = strHtml;
 }
 
-function onChosenImg(elImg,imgId) {  
+function onChosenImg(elImg) {  
     document.body.classList.add('canvas-open');
-    gCurrImg = findImgById(imgId);
-    gElIng = elImg;
+    document.querySelector('a.flex.align-center.justify-center.active').classList.remove('active');
+    gElImg = elImg;
     renderCanvas();
 }
 
 function onChangeFontSize(diff) {
+    gMeme.txts[gCurrTxtLine]["size"] += diff;
     renderCanvas();
-    gMeme.txts[0]["size"] += diff;
-    gCurrCanvas.fontSize = gMeme.txts[0]["size"];
-    let elInput = document.querySelector('#text');
-    let inputValue = elInput.value;
-    drawText(inputValue, gCanvas.width / 2, 20);
 }
 
-function onMoveLinesUpDown(diff) {
+function onMoveLinesUpDown(diff) { 
+    gMeme.txts[gCurrTxtLine].posY += diff;
     renderCanvas();
-    drawText(gCurrCanvas.text, gLastX, gLastY += diff); 
 }
 
-function renderCanvas() {
+function renderCanvas() { 
     gCanvas = document.querySelector('#meme-canvas');
     gCtx = gCanvas.getContext('2d');
-    gCtx.fillStyle = 'black';
+    gCtx.fillStyle = 'white';
+    gCtx.strokeStyle = 'black'; 
     drawImg();
-    setCurrentMeme(gCurrImg.id);
-    drawText(gMeme.txts[0]["line"], gCanvas.width / 2, gCanvas.height - 20);
+    drawTexts();
+}
+
+function drawTexts() {
+    for (let i = 0; i < gMeme.txts.length; i++) {
+        const text = gMeme.txts[i];
+        drawText(text.line, text.size, text.align, text.baseline, text.posX, text.posY, text.color, text.bgColor)
+    }
 }
 
 function onInputUpdate(val){
+    saveInputDetails(val);
     renderCanvas();
-    gCurrCanvas.text = val;
-    gLastX = gCanvas.width / 2;
-    gLastY = 20;
-    drawText(gCurrCanvas.text, gLastX, gLastY);
+}
+
+function onAddLine() { 
+    // debugger
+    onSwitchLines();
+    // let val = document.querySelector('#text').value;
+    document.querySelector('#text').focus(); 
+    let val = '';
+    onInputUpdate(val);
+    let baseline = 'top';
+    let posX = gCanvas.width / 2;
+    let posY = 40;
+    gMeme.selectedTxtIdx = gCurrTxtLine;
+    if (gCurrTxtLine === 0){
+        baseline = 'top';
+        posY = 40;
+    } else if (gCurrTxtLine === 1) {
+        baseline = 'bottom';
+        posY = gCanvas.height - 40;
+    } else {
+        baseline = 'middle';
+        posY = gCanvas.height / 2;
+    }
+    addLine(val, 35, 'center', baseline, posX, posY, 'black', 'white');
+    // renderCanvas();
+    // drawText(gMeme.txts[gCurrTxtLine].line, posX, posY);
+    document.querySelector('#text').value = '';
+    document.querySelector('#text').focus(); 
+}
+
+function onSwitchLines(){
+    setNewCurrentLine();
+    renderCanvas();
 }
 
 function drawImg() {
-    if (gElIng) {
-        gCtx.drawImage(gElIng, 0, 0, gCanvas.width, gCanvas.height)
+    if (gElImg) {
+        gCtx.drawImage(gElImg, 0, 0, gCanvas.width, gCanvas.height)
     }
     else {
-        gElIng = new Image()
-        gElIng.onload = () => {
-            gCtx.drawImage(gElIng, 0, 0, gCanvas.width, gCanvas.height)
+        gElImg = new Image()
+        gElImg.onload = () => {
+            gCtx.drawImage(gElImg, 0, 0, gCanvas.width, gCanvas.height)
         };
-        gElIng.src = './images/gallery/patrick.jpg'
+        gElImg.src = './images/gallery/patrick.jpg'
     }
 }
 
-function drawText(text, x, y) {
+function drawText(text, size, align, baseline, posX, posY, color, bgColor) { // gets an object to render from - color everythimg
+    console.log('hey')
     gCtx.save()
-    gCtx.font = `${gCurrCanvas.fontSize}px meme-impact`;
-    gCtx.strokeStyle = gCurrCanvas.color;
-    gCtx.fillStyle = gCurrCanvas.bgColor;
-    gCtx.textAlign = 'center';
-    gCtx.textBaseline = 'middle';
-    gCtx.lineWidth = gCurrCanvas.lineWidth;
-    gCtx.fillText(text, x, y);
-    gCtx.strokeText(text, x, y);
+    gCtx.font = `${size}px impact`;
+    gCtx.lineWidth = 2;
+    // let lineHeight = gCtx.measureText('M').width;
+    // ctx.globalAlpha = 0.5;
+    // gCtx.fillStyle = "rgba(255,255,255,0.3)";
+    // gCtx.fillRect(x, y, gCanvas.width, lineHeight);
+
+    gCtx.strokeStyle = color;
+    gCtx.fillStyle = bgColor;
+    gCtx.textAlign = align;
+    gCtx.textBaseline = baseline;
+  
+    // gCtx.fillText(gMeme.txts[gCurrTxtLine].line, gMeme.txts[gCurrTxtLine].posX, gMeme.txts[gCurrTxtLine].posY);
+    // gCtx.strokeText(gMeme.txts[gCurrTxtLine].line, gMeme.txts[gCurrTxtLine].posX, gMeme.txts[gCurrTxtLine].posY);
+    gCtx.fillText(text, posX, posY);
+    gCtx.strokeText(text, posX, posY);
     gCtx.restore()
 }
 

@@ -52,26 +52,6 @@ header, footer {
     color: #ffffff;
 }
 
-.img-container {
-    width: 500px;
-    height: 500px;
-}
-
-.img-container img {
-    width: 500px;
-    height: 500px;
-}
-
-.canvas-gen-container {
-    visibility: hidden;
-    opacity: 0;
-    display: none;
-}
-
-.canvas-controls {
-    /* float: right; */
-}
-
 /* Helpers */
 
 .responsive {
@@ -117,7 +97,7 @@ header, footer {
 
 .main-header {
     height: 130px;
-    box-shadow: inset 0 -6px 0 #1e1e1e;
+    margin-bottom: 20px;
 }
 
 .main-nav-ul>* a {
@@ -132,13 +112,10 @@ header, footer {
     letter-spacing: -0.8px;
 }
 
-.main-nav-ul>*.active {
+.main-nav-ul> li .active {
     color: black;
+    box-shadow: inset 0 -6px 0 #1e1e1e;
     cursor: default;
-}
-
-.main-nav-ul>*.active:hover {
-    border-bottom: 0;
 }
 
 .main-nav-ul>*:hover {
@@ -187,7 +164,60 @@ body.canvas-open .canvas-gen-container {
     height: 50px;
     border-radius: 7px;
     margin: 5px;
-   text-align: center;
+    text-align: center;
     border: none;
     text-transform: uppercase;
+}
+
+.switch-lines {
+    background-image: url('../images/icons/up-and-down-opposite-double-arrows-side-by-side.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 60px;
+    height: 50px;
+    border-radius: 7px;
+    margin: 5px;
+    border: none;
+}
+
+.add-line {
+    width: 60px;
+    height: 50px;
+    border-radius: 7px;
+    text-align: center;
+    margin: 5px;
+    border: none;
+}
+
+/* Gallery */
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    margin: 0 auto 20px;
+}
+
+body.canvas-open .gallery-container {
+    display: none;
+}
+
+.img-container img {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.canvas-gen-container {
+    visibility: hidden;
+    opacity: 0;
+    margin-bottom: 20px;
+    display: none;
+}
+
+/* Footer */
+
+footer {
+    height: 80px;
 }
