@@ -56,13 +56,13 @@ function renderCanvas() {
     gCtx.fillStyle = 'white';
     gCtx.strokeStyle = 'black'; 
     drawImg();
+    markSelectedLine();
     if(gMeme.txts.length > 0){
         drawTexts();
     }
 }
 
 function drawTexts() {
-    
     for (let i = 0; i < gMeme.txts.length; i++) {
         const text = gMeme.txts[i];
         drawText(text.line, text.size, text.align, text.baseline, text.posX, text.posY, text.color, text.bgColor,text.fontFamily)
@@ -107,6 +107,12 @@ function onSwitchLines(){
     renderCanvas();
 }
 
+function markSelectedLine() {
+    let x = gMeme.txts[gCurrTxtLine].posX;
+    let y = gMeme.txts[gCurrTxtLine].posY;
+    drawRect(x, y);
+}
+
 function drawImg() {
     if (gElImg) {
         gCtx.drawImage(gElImg, 0, 0, gCanvas.width, gCanvas.height)
@@ -125,20 +131,24 @@ function drawText(text, size, align, baseline, posX, posY, color, bgColor, fontF
     gCtx.save()
     gCtx.font = `${size}px ${fontFamily}`;
     gCtx.lineWidth = 2;
-    // let lineHeight = gCtx.measureText('M').width;
-    // ctx.globalAlpha = 0.5;
-    // gCtx.fillStyle = "rgba(255,255,255,0.3)";
-    // gCtx.fillRect(x, y, gCanvas.width, lineHeight);
-
     gCtx.strokeStyle = color;
     gCtx.fillStyle = bgColor;
     gCtx.textAlign = align;
     gCtx.textBaseline = baseline;
-  
-    // gCtx.fillText(gMeme.txts[gCurrTxtLine].line, gMeme.txts[gCurrTxtLine].posX, gMeme.txts[gCurrTxtLine].posY);
-    // gCtx.strokeText(gMeme.txts[gCurrTxtLine].line, gMeme.txts[gCurrTxtLine].posX, gMeme.txts[gCurrTxtLine].posY);
     gCtx.fillText(text, posX, posY);
     gCtx.strokeText(text, posX, posY);
+    gCtx.restore()
+}
+
+function drawRect(x, y) {
+    gCtx.save()
+    gCtx.strokeStyle = gCurrCanvas.color;
+    gCtx.fillStyle = "rgba(255,255,255,0.3)";
+    gCtx.beginPath();
+    gCtx.rect(0, y, gCanvas.width, 40)
+    gCtx.fillRect(0, y, gCanvas.width, 40)
+    gCtx.stroke()
+    gCtx.closePath()
     gCtx.restore()
 }
 
@@ -157,6 +167,17 @@ function onChangeFontFamily() {
     setFontFamily(selectedFont);
 }
 
+function onDeleteLine() {
+    clearCanvas();
+    deleteCurrLine();
+    renderCanvas();
+}
+
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
+    // You may clear part of the canvas
+    // gCtx.clearRect(50, 50, 100, 100)
+}
 
 function draw(ev) {
     gCtx.save()

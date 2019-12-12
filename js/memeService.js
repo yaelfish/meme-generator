@@ -31,8 +31,8 @@ let gMeme = {
     selectedTxtIdx: 0,
     txts: [
         createTxtObject('', 40, 'center', 'top', 200, 20, 'black', 'white', 'impact'),
-        createTxtObject('', 40, 'center', 'bottom', 200, 460, 'black', 'white', 'impact'),
-        createTxtObject('', 40, 'center', 'middle', 200, 200, 'black', 'white', 'impact')
+        createTxtObject('', 40, 'center', 'bottom', 200, 400, 'black', 'white', 'impact'),
+        createTxtObject('', 40, 'center', 'middle', 200, 180, 'black', 'white', 'impact')
     ]
 };
 
@@ -50,6 +50,15 @@ function createTxtObject(line = '', size = 30, align = 'center', baseline = 'mid
         fontFamily
     }
     return textObj;
+}
+
+function deleteCurrLine() {
+    gMeme.txts[gCurrTxtLine].line = '';
+}
+
+function downloadImg(elLink) {
+    var imgContent = gCanvas.toDataURL('image/jpeg');
+    elLink.href = imgContent
 }
 
 // function addLine(line = '', size = 30, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white', fontFamily = 'impact') {
@@ -106,6 +115,10 @@ function setTextAlign(val) {
 
 function setBgColor(val) {
     gMeme.txts[gCurrTxtLine].bgColor = val;
+}
+
+function setColor(val) {
+    gMeme.txts[gCurrTxtLine].color = val;
 }
 
 function setFontFamily(val) {
