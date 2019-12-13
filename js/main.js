@@ -110,6 +110,8 @@ function markSelectedLine() {
     let x = gMeme.txts[gCurrTxtLine].posX;
     let y = gMeme.txts[gCurrTxtLine].posY;
     drawRect(x, y);
+    console.log(x, y);
+    
 }
 
 function drawImg() {
@@ -136,6 +138,9 @@ function drawText(text, size, align, baseline, posX, posY, color, bgColor, fontF
     gCtx.fillText(text, posX, posY);
     gCtx.strokeText(text, posX, posY);
     gCtx.restore()
+
+    console.log(posX, posY);
+    
 }
 
 function drawRect(x, y) {
@@ -143,8 +148,8 @@ function drawRect(x, y) {
     gCtx.strokeStyle = "white";
     gCtx.fillStyle = "rgba(255,255,255,0.3)";
     gCtx.beginPath();
-    gCtx.rect(0, y, gCanvas.width, 40)
-    gCtx.fillRect(0, y, gCanvas.width, 40)
+    gCtx.rect(0, y - gMeme.txts[gCurrTxtLine]["size"], gCanvas.width, gMeme.txts[gCurrTxtLine]["size"]+10)
+    gCtx.fillRect(0, y - gMeme.txts[gCurrTxtLine]["size"], gCanvas.width, gMeme.txts[gCurrTxtLine]["size"]+10)
     gCtx.stroke()
     gCtx.closePath()
     gCtx.restore()

@@ -25,19 +25,18 @@ let gMeme = {
     selectedImgId: 4,
     selectedTxtIdx: 0,
     txts: [
-        createTxtObject('', 40, 'center', 'top', 200, 20, 'black', 'white', 'impact'),
+        createTxtObject('', 40, 'center', 200, 70, 'black', 'white', 'impact')
         // createTxtObject('', 40, 'center', 'bottom', 200, 400, 'black', 'white', 'impact')
         // createTxtObject('', 40, 'center', 'middle', 200, 180, 'black', 'white', 'impact')
     ]
 };
 
-function createTxtObject(line = '', size = 40, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white', fontFamily = 'impact') {
+function createTxtObject(line = '', size = 40, align = 'center', posX = 200, posY = 255, color = 'black', bgColor = 'white', fontFamily = 'impact') {
     let textObj = {
         id: gId++,
         line,
         size,
         align,
-        baseline,
         posX,
         posY,
         color,
@@ -66,7 +65,7 @@ function saveInputDetails(val) {
 
 function addNewLine() {
     if (gMeme.selectedTxtIdx === 0){
-        gMeme.txts.push(createTxtObject('', 40, 'center', 'bottom', 200, 400, 'black', 'white', 'impact'))
+        gMeme.txts.push(createTxtObject('', 40, 'center', 200, 400, 'black', 'white', 'impact'))
     } else {
         gMeme.txts.push(createTxtObject());
     }
