@@ -4,8 +4,6 @@ var gCanvas;
 var gCtx;
 var x = 75;
 var y = 50;
-var dx = 5;
-var dy = 3;
 var WIDTH = 400;
 var HEIGHT = 300;
 var dragok = false,
@@ -71,6 +69,4 @@ function myUp(){
  gCanvas.onmousemove = null;
 }
   
-</script>
-</body>
-</html>
+

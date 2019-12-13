@@ -25,13 +25,13 @@ let gMeme = {
     selectedImgId: 4,
     selectedTxtIdx: 0,
     txts: [
-        createTxtObject('', 40, 'center', 200, 70, 'black', 'white', 'impact')
+        createTxtObject('', 40, 'center', 200, 70, 'black', 'white', 'impact',false)
         // createTxtObject('', 40, 'center', 'bottom', 200, 400, 'black', 'white', 'impact')
         // createTxtObject('', 40, 'center', 'middle', 200, 180, 'black', 'white', 'impact')
     ]
 };
 
-function createTxtObject(line = '', size = 40, align = 'center', posX = 200, posY = 255, color = 'black', bgColor = 'white', fontFamily = 'impact') {
+function createTxtObject(line = '', size = 40, align = 'center', posX = 200, posY = 255, color = 'black', bgColor = 'white', fontFamily = 'impact',isDragging = false) {
     let textObj = {
         id: gId++,
         line,
@@ -41,7 +41,8 @@ function createTxtObject(line = '', size = 40, align = 'center', posX = 200, pos
         posY,
         color,
         bgColor,
-        fontFamily
+        fontFamily,
+        isDragging
     }
     return textObj;
 }
@@ -65,7 +66,7 @@ function saveInputDetails(val) {
 
 function addNewLine() {
     if (gMeme.selectedTxtIdx === 0){
-        gMeme.txts.push(createTxtObject('', 40, 'center', 200, 400, 'black', 'white', 'impact'))
+        gMeme.txts.push(createTxtObject('', 40, 'center', 200, 400, 'black', 'white', 'impact', false))
     } else {
         gMeme.txts.push(createTxtObject());
     }
