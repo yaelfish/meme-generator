@@ -83,14 +83,19 @@ function renderCanvas() {
 }
 
 function drawTexts() {
-    for (let i = 0; i < gMeme.txts.length; i++) {
-        const text = gMeme.txts[i];
-        drawText(text.line, text.size, text.align, text.baseline, text.posX, text.posY, text.color, text.bgColor,text.fontFamily)
-    }
+    gMeme.txts.forEach((text)=> {
+        drawText(text.line, text.size, text.align, text.baseline, text.posX, text.posY, text.color, text.bgColor, text.fontFamily)
+    });
 }
 
 function onInputUpdate(val){
     saveInputDetails(val);
+    renderCanvas();
+}
+
+function onaddNewLine() {
+    addNewLine();
+    onSwitchLines();
     renderCanvas();
 }
 
@@ -158,6 +163,7 @@ function onChangeBgColor(val) {
 function onChangeFontFamily() {
     let selectedFont = document.querySelector('select[name="font-family"]').value;
     setFontFamily(selectedFont);
+    renderCanvas();
 }
 
 function onDeleteLine() {

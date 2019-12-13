@@ -2,19 +2,19 @@
 let gId = 0;
 
 let gImgs = [
-    {id: 1, url: '1.jpg', keywords: ['happy']},
-    {id: 2, url: '2.jpg', keywords: ['wow'] },
+    { id: 1, url: '1.jpg', keywords: ['happy', 'sarcastic'] },
+    { id: 2, url: '2.jpg', keywords: ['sarcastic'] },
     { id: 3, url: '3.jpg', keywords: ['sad'] },
     { id: 4, url: '4.jpg', keywords: ['exciting'] },
     { id: 5, url: '5.jpg', keywords: ['cute'] },
-    { id: 6, url: '6.jpg', keywords: ['cute'] },
+    { id: 6, url: '6.jpg', keywords: ['cute', 'animal'] },
     { id: 7, url: '7.jpg', keywords: ['happy'] },
     { id: 8, url: '8.jpg', keywords: ['exciting'] },
     { id: 9, url: '9.jpg', keywords: ['exciting'] },
-    { id: 10, url: '10.jpg', keywords: ['happy'] },
+    { id: 10, url: '10.jpg', keywords: ['happy', 'baby'] },
     { id: 11, url: '11.jpg', keywords: ['happy'] },
-    { id: 12, url: '12.jpg', keywords: ['happy'] },
-    { id: 13, url: '13.jpg', keywords: ['happy'] },
+    { id: 12, url: '12.jpg', keywords: ['happy', 'animal'] },
+    { id: 13, url: '13.jpg', keywords: ['happy', 'crazy'] },
     { id: 14, url: '14.jpg', keywords: ['happy'] },
     { id: 15, url: '15.jpg', keywords: ['happy'] },
     { id: 16, url: '16.jpg', keywords: ['happy'] },
@@ -26,12 +26,12 @@ let gMeme = {
     selectedTxtIdx: 0,
     txts: [
         createTxtObject('', 40, 'center', 'top', 200, 20, 'black', 'white', 'impact'),
-        createTxtObject('', 40, 'center', 'bottom', 200, 400, 'black', 'white', 'impact'),
-        createTxtObject('', 40, 'center', 'middle', 200, 180, 'black', 'white', 'impact')
+        // createTxtObject('', 40, 'center', 'bottom', 200, 400, 'black', 'white', 'impact')
+        // createTxtObject('', 40, 'center', 'middle', 200, 180, 'black', 'white', 'impact')
     ]
 };
 
-function createTxtObject(line = '', size = 30, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white', fontFamily = 'impact') {
+function createTxtObject(line = '', size = 40, align = 'center', baseline = 'middle', posX = 200, posY = 240, color = 'black', bgColor = 'white', fontFamily = 'impact') {
     let textObj = {
         id: gId++,
         line,
@@ -64,8 +64,16 @@ function saveInputDetails(val) {
     gMeme.txts[gCurrTxtLine].line = val;
 }
 
+function addNewLine() {
+    if (gMeme.selectedTxtIdx === 0){
+        gMeme.txts.push(createTxtObject('', 40, 'center', 'bottom', 200, 400, 'black', 'white', 'impact'))
+    } else {
+        gMeme.txts.push(createTxtObject());
+    }
+}
+
 function setNewCurrentLine() {
-    if (gCurrTxtLine === gMeme.txts.length-1){
+    if (gCurrTxtLine === gMeme.txts.length - 1) {
         gCurrTxtLine = 0;
     }
     else {

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Meme Generator</title>
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/style.css">
 </head>
@@ -31,6 +32,22 @@
             </ul>
         </nav>
     </header>
+    <section class="search-container">
+        <div class="search-line">
+            <form >
+                <input list="keywords" name="keywords" placeholder="Enter search keyword">
+                <datalist id="keywords">
+                    <option value="Happy">
+                    <option value="Crazy">
+                    <option value="Sarcastic">
+                    <option value="Animal">
+                    <option value="Baby">
+                </datalist>
+                <button class="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <div class="keywords-container"></div>
+    </section>
     <main class="gallery-container flex justify-center container"></main>
     <section id="about" class="about-container flex justify-center align-center">
         <img class="img-about" src="./images/yael.jpg" alt="">
@@ -57,6 +74,7 @@
             <input type="text" name="text" id="text" class="text-input" placeholder="Your awesome text goes here" oninput="onInputUpdate(this.value)" value="">
             <div class="move-lines-controls flex">
                 <button class="switch-lines" onclick="onSwitchLines()"></button>
+                <button class="add-line" onclick="onaddNewLine()"></button>
                 <button class="line-up move-lines" onclick="onMoveLinesUpDown(-10)">up</button>
                 <button class="line-down move-lines" onclick="onMoveLinesUpDown(10)">down</button>
             </div>
@@ -89,7 +107,7 @@
 
         </div>
         <div class="canvas-container">
-            <canvas id="meme-canvas" width="500" height="500" onclick="draw(event)">
+            <canvas id="meme-canvas" width="500" height="500">
                 Update your browser to enjoy canvas!
             </canvas>
         </div>
