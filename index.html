@@ -10,28 +10,48 @@
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body onload="init()">
-    <header class="main-header">
-        <div class="main-header-container container flex space-between align-center">
-            <a class="logo main-logo" href="#">
-                <span>memegen</span>
-                <img src="./images/logo.png" alt="MEMEGEN" hidden>
-            </a>
-            <div class="nav-icon" onclick="toggleMenu()">
-                <div></div>
-            </div>
-            <nav class="main-nav">
-                <ul class="main-nav-ul clean-list flex">
-                    <li>
-                        <a class="flex align-center justify-center active" href="#" onclick="onGalleryOpen(this)">Gallery</a>
-                    </li>
-                    <li>
-                        <a class="flex align-center justify-center" href="#">About</a>
-                    </li>
-                </ul>
-            </nav>
+    <header class="main-header-container flex space-between align-center">
+        <a class="logo main-logo" href="#">
+            <img src="./images/logo.png" alt="MEMEGEN">
+        </a>
+        <div class="nav-icon" onclick="onToggleMenu()">
+            <div></div>
         </div>
+        <nav class="main-nav">
+            <ul class="main-nav-ul clean-list flex">
+                <li>
+                    <a class="link-gallery flex align-center justify-center active" href="#" onclick="onGalleryOpen(this)">Gallery</a>
+                </li>
+                <li>
+                    <a class="link-memes flex align-center justify-center" href="#" onclick="onMemesOpen(this)">Memes</a>
+                </li>
+                <li>
+                    <a class="link-about flex align-center justify-center" href="#about" onclick="onAboutOpen(this)">About</a>
+                </li>
+            </ul>
+        </nav>
     </header>
-    <main class="gallery-container flex justify-center"></main>
+    <main class="gallery-container flex justify-center container"></main>
+    <section id="about" class="about-container flex justify-center align-center">
+        <img class="img-about" src="./images/yael.jpg" alt="">
+        <div class="about-text-container flex column">
+            <h2 class="about-title">Yael Fisher</h2>
+            <p class="text-about">Is a full-stack web developer. A really nice one. And professional. 
+            And what do you know? She's here at your service.  </p>
+            
+            <ul class="social-buttons clean-list flex">
+                <li class="social-btn github">
+                    <a target="_blank" href="https://github.com/yaelfish"></a>
+                </li>
+                <li class="social-btn facebook">
+                    <a target="_blank" href="https://www.facebook.com/yael.fisher1"></a>
+                </li>
+                <li class="social-btn linkedin">
+                    <a target="_blank" href="https://www.linkedin.com/in/yael-fisher-5436b282/"></a>
+                </li>
+            </ul>
+        </div>
+    </section>
     <section class="canvas-gen-container">
         <div class="canvas-controls">
             <input type="text" name="text" id="text" class="text-input" placeholder="Your awesome text goes here" oninput="onInputUpdate(this.value)" value="">
@@ -74,8 +94,11 @@
             </canvas>
         </div>
     </section>
-    <footer class="flex justify-center align-center">
-        @All Rights Reserved 2019
+    <footer class="flex justify-center align-center column">
+        <a class="logo main-logo" href="#">
+            <img src="./images/logo.png" alt="MEMEGEN">
+        </a>
+        <p>@All Rights Reserved 2019</p>
     </footer>
 
     <script src="./js/memeService.js"></script>

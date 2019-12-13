@@ -11,9 +11,29 @@ function init(){
     renderImages();
 }
 
+function onAboutOpen(el) {
+    document.body.classList.remove('canvas-open');
+    document.querySelector('.link-memes').classList.remove('active');
+    document.querySelector('.link-gallery').classList.remove('active');
+    el.classList.add('active');
+}
+
 function onGalleryOpen(el) {
     document.body.classList.remove('canvas-open');
+    document.querySelector('.link-memes').classList.remove('active');
+    document.querySelector('.link-about').classList.remove('active');
     el.classList.add('active');
+}
+
+function onMemesOpen(el) {
+    document.body.classList.remove('canvas-open');
+    document.querySelector('.link-about').classList.remove('active');
+    document.querySelector('.link-gallery ').classList.remove('active');
+    el.classList.add('active');
+}
+
+function onToggleMenu() {
+    document.body.classList.toggle('menu-open');
 }
 
 function renderImages() {
