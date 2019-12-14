@@ -21,15 +21,27 @@ let gImgs = [
     { id: 17, url: '17.jpg', keywords: ['happy'] },
 ];
 
+function searchImgsKeyWords(keyword) {
+    let counter = 0;
+    let keys = gImgs.map((img)=> {
+        if(img.keywords.includes(keyword)){
+            return {
+                key: counter++
+            }
+        }
+    });
+    return keys.key;
+}
+
 let gMeme = {
     selectedImgId: 4,
     selectedTxtIdx: 0,
     txts: [
-        createTxtObject('', 40, 'center', 200, 70, 'black', 'white', 'impact',false)
+        createTxtObject('', 35, 'center', 180, 70, 'black', 'white', 'impact',false)
     ]
 };
 
-function createTxtObject(line = '', size = 40, align = 'center', posX = 200, posY = 255, color = 'black', bgColor = 'white', fontFamily = 'impact',isDragging = false) {
+function createTxtObject(line = '', size = 35, align = 'center', posX = 200, posY = 255, color = 'black', bgColor = 'white', fontFamily = 'impact',isDragging = false) {
     let textObj = {
         id: gId++,
         line,
@@ -50,7 +62,7 @@ function deleteCurrLine() {
 }
 
 function downloadImg(elLink) {
-    var imgContent = gCanvas.toDataURL('image/jpeg');
+    let imgContent = gCanvas.toDataURL('image/jpeg');
     elLink.href = imgContent
 }
 
@@ -64,7 +76,7 @@ function saveInputDetails(val) {
 
 function addNewLine() {
     if (gMeme.selectedTxtIdx === 0){
-        gMeme.txts.push(createTxtObject('', 40, 'center', 200, 400, 'black', 'white', 'impact', false))
+        gMeme.txts.push(createTxtObject('', 35, 'center', 200, 400, 'black', 'white', 'impact', false))
     } else {
         gMeme.txts.push(createTxtObject());
     }
@@ -95,10 +107,5 @@ function setColor(val) {
 function setFontFamily(val) {
     gMeme.txts[gCurrTxtLine].fontFamily = val;
 }
-
-
-
-
-
 
 

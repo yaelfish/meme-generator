@@ -19,24 +19,24 @@ function init() {
 
 function onAboutOpen(el) {
     document.body.classList.remove('canvas-open');
-    document.querySelector('.link-memes').classList.remove('active');
+    // document.querySelector('.link-memes').classList.remove('active');
     document.querySelector('.link-gallery').classList.remove('active');
     el.classList.add('active');
 }
 
 function onGalleryOpen(el) {
     document.body.classList.remove('canvas-open');
-    document.querySelector('.link-memes').classList.remove('active');
+    // document.querySelector('.link-memes').classList.remove('active');
     document.querySelector('.link-about').classList.remove('active');
     el.classList.add('active');
 }
 
-function onMemesOpen(el) {
-    document.body.classList.remove('canvas-open');
-    document.querySelector('.link-about').classList.remove('active');
-    document.querySelector('.link-gallery ').classList.remove('active');
-    el.classList.add('active');
-}
+// function onMemesOpen(el) {
+//     document.body.classList.remove('canvas-open');
+//     document.querySelector('.link-about').classList.remove('active');
+//     document.querySelector('.link-gallery ').classList.remove('active');
+//     el.classList.add('active');
+// }
 
 function onToggleMenu() {
     document.body.classList.toggle('menu-open');
@@ -70,6 +70,8 @@ function initCanvas() {
     gOffsetX = gCanvasToClient.left;
     gOffsetY = gCanvasToClient.top;
     WIDTH = gCanvas.width;
+    let heightRatio = 1.5;
+    gCanvas.height = WIDTH * heightRatio;
     HEIGHT = gCanvas.height;
     gCtx.fillStyle = 'white';
     gCtx.strokeStyle = 'black';
@@ -88,13 +90,12 @@ function onCanvasMouseDown(e) {
     e.preventDefault();
     e.stopPropagation();
     
-    let currMousePosX = parseInt(e.clientX - gOffsetX);
+    let currMousePosX = parseInt(e.clientX + gOffsetX);
     let currMousePosY = parseInt(e.clientY - gOffsetY);
-
     console.log('currMousePosX:', currMousePosX, 'currMousePosY:', currMousePosY );
     renderCanvas();
-    // test each line to see if mouse is inside
     isDragMode = false;
+    // test each line to see if mouse is inside
     gMeme.txts.forEach((text) => {
         let textLength = (text.line.length * text.size) / 2;   
          if   ((e.pageX < (text.posX + textLength + gOffsetX)) &&
@@ -271,4 +272,62 @@ function onDownloadImg(img){
     drawImg();
     drawTexts();
     downloadImg(img);
+}
+
+function onUploadImgInput(ev) {
+    loadImageFromInput(ev, renderCanvas)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    let reader = new FileReader();
+    console.log(ev);
+    
+    reader.onload = function (event) {
+        let img = new Image();
+        
+        img.onload = () => {
+            // gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+            // initCanvas();
+            // onImageReady();
+            gElImg = img;
+            gCanvas.width = img.width;
+            gCanvas.height = img.height;
+            // gCtx.drawImage(img, 0, 0);
+            gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+           
+        };
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(ev.target.files[0]);
+}
+
+function onFacebookShare(elForm, ev) {
+    ev.preventDefault();
+    document.getElementById('imgData').value = gCanvas.toDataURL("image/jpeg");
+
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        document.querySelector('.btn-share').innerHTML = `
+        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+           Share   
+        </a>`
+    }
+
+    doUploadImg(elForm, onSuccess);
+}
+
+function doUploadImg(elForm, onSuccess) {
+    var formData = new FormData(elForm);
+    fetch('http://ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(function (res) {
+            return res.text()
+        })
+        .then(onSuccess)
+        .catch(function (err) {
+            console.error(err)
+        })
 }

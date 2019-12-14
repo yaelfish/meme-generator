@@ -46,10 +46,6 @@ a {
     background-color: #e3e3e3;
 }
 
-#meme-canvas {
-    width: 500px;
-}
-
 header, footer {
     background-color: #ff7f00;
     color: #ffffff;
@@ -101,6 +97,7 @@ header, footer {
 .main-header-container {
     height: 66px;
     padding: 0 49px;
+    width: 100%;
 }
 
 .main-nav-ul>* a {
@@ -126,6 +123,20 @@ header, footer {
     color: black;
 }
 
+/* Search
+
+span.keyWords.small {
+    font-size: 1rem;
+}
+
+span.keyWords.many {
+    font-size: 1.7rem;
+}
+
+span.keyWords.none {
+    display: none;
+} */
+
 /* Canvas mode */
 
 body.canvas-open main {
@@ -140,172 +151,177 @@ body.canvas-open .about-container {
     display: none;
 }
 
+.canvas-gen-container {
+    padding: 20px;
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+    grid-area: canvas;
+    background-color: #e3e3e3;
+    padding-top: 90px;
+}
+
 body.canvas-open .canvas-gen-container {
     visibility: visible;
     opacity: 1;
-    display: block;
-    display: flex;
+    display: grid;
+    grid-template-areas: "canvas controls" "canvas controls";
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+.canvas-container {
+    display: grid;
+    grid-area: canvas;
+    max-height: 500px;
+    max-width: 500px;
+    min-width: 500px;
+    min-height: 500px;
+}
+
+.canvas-container>* {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.meme-canvas {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+}
+
+body.canas-open .canvas-controls {
+    grid-area: controls;
 }
 
 .canvas-controls {
     font-size: 1.4rem;
-    padding: 0 1em;
+    padding: 0 10px;
+    grid-area: controls;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.delete {
-    background-image: url('../images/icons/trash.png');
+.control-btn {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     width: 60px;
-    height: 50px;
-    border-radius: 7px;
-    margin: 5px;
-    padding: 20px;
+    height: 60px;
+    border-radius: 12px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
     border: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.control-btn img {
+    width: 30px;
+    height: 30px;
+}
+
+.bg-color-input img {
+    position: absolute;
+    display: flex;
+    align-self: center;
 }
 
 #bg-color-input {
-    background-image: url('../images/icons/paint-board-and-brush.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: 60px;
-    height: 50px;
-    border-radius: 7px;
-    margin: 5px;
-    padding: 20px;
-    border: none;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
     -webkit-appearance: none;
 }
 
+.txt-color-input img {
+    position: absolute;
+    display: flex;
+    align-self: center;
+}
+
 #txt-color-input {
-    background-image: url('../images/icons/text\ stroke.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: 60px;
-    height: 50px;
-    border-radius: 7px;
-    margin: 5px;
-    padding: 20px;
-    border: none;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
     -webkit-appearance: none;
+}
+
+.download-share {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 }
 
 .btn-download {
     background-color: #ff7f00;
-    color: #ffffff;
-    border-radius: 5px;
-    padding: 6px;
+    border: 1px solid #ff7f00;
+    color: #fff;
+    cursor: pointer;
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0 5px;
+    font-size: 1.25rem;
+    user-select: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.btn-share {
+    background: #4267b2;
+    border: 1px solid #4267b2;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: 1.25rem;
+    user-select: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+}
+
+.file-input {
+    border: 1px solid red;
+    padding: 5px;
+    margin: 13px;
+    width: 39%;
 }
 
 .text-input {
     display: flex;
     width: 100%;
-    padding: 3px;
-    font-size: 1rem;
-    border-radius: 5px;
-    margin-bottom: 5px;
+    align-content: center;
+    text-indent: 20px;
+    font-size: 1.25rem;
+    text-align: left;
+    height: 60px;
+    border-radius: 12px;
+    margin-bottom: 11px;
 }
 
 .font-family-controls.flex {
     margin-bottom: 13px;
+    width: 100%;
 }
 
 select {
-    height: 6vh;
+    height: 60px;
+    width: 55%;
     padding-left: 8px;
     font-size: 1rem;
     border-radius: 5px;
     margin-bottom: 5px;
-    width: 100%;
-}
-
-.font-size-btn {
-    width: 60px;
-    height: 50px;
-    border-radius: 7px;
-    margin: 5px;
-    padding: 20px;
-    border: none;
-}
-
-.font-decrease {
-    background-image: url('../images/icons/decrease\ font\ -\ icon.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-.font-increase {
-    background-image: url('../images/icons/increase\ font\ -\ icon.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
+    margin-right: 20px;
 }
 
 .move-lines {
-    width: 60px;
-    height: 50px;
-    border-radius: 7px;
-    margin: 5px;
     text-align: center;
-    border: none;
     text-transform: uppercase;
-}
-
-.switch-lines {
-    background-image: url('../images/icons/up-and-down-opposite-double-arrows-side-by-side.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: 60px;
-    height: 50px;
-    border-radius: 7px;
-    margin: 5px;
-    border: none;
-}
-
-.add-line {
-    background-image: url('../images/icons/add.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: 60px;
-    height: 50px;
-    border-radius: 7px;
-    margin: 5px;
-    border: none;
-}
-
-.text-align-btn {
-    width: 60px;
-    height: 50px;
-    border-radius: 7px;
-    margin: 5px;
-    border: none;
-}
-
-.text-align-left {
-    background-image: url('../images/icons/align-to-right.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-.text-align-center {
-    background-image: url('../images/icons/center-text-alignment.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-.text-align-right {
-    background-image: url('../images/icons/align-to-left.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
 }
 
 /* Gallery */
@@ -324,26 +340,7 @@ body.canvas-open .gallery-container {
     /* min-height: 150px; */
     width: 100%;
     object-fit: cover;
-}
-
-.canvas-gen-container {
-    padding: 20px;
-    visibility: hidden;
-    opacity: 0;
-    margin-bottom: 20px;
-    display: none;
-}
-
-body.canvas-open .canvas-gen-container {
-    visibility: visible;
-    opacity: 1;
-    display: block;
-    display: flex;
-    flex-direction: row;
-}
-
-body.canas-open .canvas-controls {
-    width: 50%;
+    cursor: pointer;
 }
 
 /* About */
@@ -389,6 +386,7 @@ p.text-about {
     background-position: center;
     color: white;
     margin-right: 9px;
+    cursor: pointer;
 }
 
 .facebook {
@@ -411,16 +409,31 @@ footer {
     font-size: 1.1875rem;
 }
 
-#meme-canvas {
-    width: 500px;
-}
-
-@media (max-width: 1100px) {
+@media (max-width: 1060px) {
     html {
         font-size: 15px;
     }
-    #meme-canvas {
-        width: 500px;
+    .canvas-gen-container {
+        padding: 10px;
+    }
+    .canvas-container {
+        display: grid;
+        grid-area: canvas;
+        max-height: 350px;
+        max-width: 350px;
+        min-width: 350px;
+        min-height: 350px;
+    }
+    select {
+        height: 50px;
+    }
+    .text-input {
+        height: 50px;
+    }
+    .control-btn {
+        height: 50px;
+        width: 50px;
+        margin-bottom: 12px;
     }
 }
 
@@ -432,22 +445,33 @@ footer {
         padding-left: 10px;
         padding-right: 10px;
     }
+    .main-header-container {
+        position: fixed;
+    }
+    main {
+        padding-top: 66px;
+    }
     .gallery-container {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
         gap: 4px;
     }
-    #meme-canvas {
-        width: 350px;
-    }
     body.canvas-open .canvas-gen-container {
         visibility: visible;
         opacity: 1;
-        display: block;
-        display: flex;
-        flex-direction: column-reverse;
+        display: grid;
+        grid-template-areas: ". canvas . " ". controls . ";
+        max-width: 400px;
+        margin: auto;
+        padding-top: 80px;
     }
     body.canvas-open .canvas-controls {
         width: 100%;
+    }
+    .canvas-container {
+        margin: 0 auto 20px;
+    }
+    .meme-canvas {
+        object-fit: fill;
     }
     .nav-icon {
         margin: 0;
@@ -475,11 +499,15 @@ footer {
     body.menu-open .nav-icon div {
         transform: scale(0);
     }
+    .menu-open .nav-icon {
+        /* background-color: #000000; */
+        z-index: 9;
+    }
     .main-nav {
         flex-direction: column;
         position: fixed;
         right: 0;
-        top: 20%;
+        top: 0;
         height: 100vh;
         background: rgba(255, 255, 255, 0.9);
         border-left: 1px solid #c3c3c3;
@@ -500,10 +528,10 @@ footer {
     }
     .main-nav a {
         display: block;
-        height: 80px;
-        padding: 20px 0;
-        width: 213px;
-        text-align: center;
+    }
+    .main-nav-ul>li .active {
+        color: white;
+        box-shadow: none;
     }
     body.dropDown-open .dropdown-content a {
         display: none;
@@ -522,7 +550,7 @@ footer {
         flex-direction: column;
         padding-top: 30px;
         align-items: center;
-        background-color: rgba(20, 20, 20, 0.9);
+        background-color: #ff7f00;
         font-size: 1.5rem;
     }
     .close {
@@ -532,7 +560,8 @@ footer {
     .about-container {
         flex-direction: column;
         padding-bottom: 63px;
-        padding-top: 34px;
+        /* padding-top: 34px; */
+        padding-top: 93px;
         width: 70%;
     }
     .img-about {
@@ -542,5 +571,9 @@ footer {
     }
     .social-buttons {
         justify-content: center;
+    }
+    .about-text-container {
+        margin-left: 0;
+        text-align: center;
     }
 }
