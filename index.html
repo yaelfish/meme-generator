@@ -12,9 +12,9 @@
 </head>
 <body onload="init()">
     <header class="main-header-container flex space-between align-center">
-        <!-- <a class="logo main-logo" href="#"> -->
-            <img src="./images/logo.png" class="logo main-logo" alt="MEMEGEN">
-        <!-- </a> -->
+        <a class="logo main-logo" href="#">
+            <img src="./images/logo.png" alt="MEMEGEN">
+        </a>
         <div class="nav-icon" onclick="onToggleMenu()">
             <div></div>
         </div>
@@ -23,33 +23,14 @@
                 <li>
                     <a class="link-gallery flex align-center justify-center active" href="#" onclick="onGalleryOpen(this)">Gallery</a>
                 </li>
-                <!-- <li>
-                    <a class="link-memes flex align-center justify-center" href="#" onclick="onMemesOpen(this)">Memes</a>
-                </li> -->
                 <li>
                     <a class="link-about flex align-center justify-center" href="#about" onclick="onAboutOpen(this)">About</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <!-- Search bar and Gallery -->
+    <!-- Gallery -->
     <main>
-        <!-- <section class="search-container">
-            <div class="search-line">
-                <form>
-                    <input list="keywords" name="keywords" placeholder="Enter search keyword" onchange="onKeywordChange(this.value)">
-                    <datalist id="keywords">
-                        <option value="Happy">
-                        <option value="Crazy">
-                        <option value="Sarcastic">
-                        <option value="Animal">
-                        <option value="Baby">
-                    </datalist>
-                    <button class="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-            <div class="keywords-container"></div>
-        </section> -->
         <section class="gallery-container flex justify-center container">
         </section>
     </main>
@@ -62,88 +43,59 @@
             And what do you know? She's here at your service.  </p>
             
             <ul class="social-buttons clean-list flex">
-                <!-- <li class="social-btn github"> -->
-                    <a target="_blank" class="social-btn github" href="https://github.com/yaelfish"></a>
-                <!-- </li> -->
-                <!-- <li class="social-btn facebook"> -->
-                    <a target="_blank" class="social-btn facebook" href="https://www.facebook.com/yael.fisher1"></a>
-                <!-- </li> -->
-                <!-- <li class="social-btn linkedin"> -->
-                    <a target="_blank" class="social-btn linkedin" href="https://www.linkedin.com/in/yael-fisher-5436b282/"></a>
-                <!-- </li> -->
+                <a class="social-btn github" target="_blank" href="https://github.com/yaelfish"></a>
+                <a class="social-btn facebook" target="_blank" href="https://www.facebook.com/yael.fisher1"></a>
+                <a class="social-btn linkedin" target="_blank" href="https://www.linkedin.com/in/yael-fisher-5436b282/"></a>
             </ul>
         </div>
     </section>
     <!-- Canvas Section -->
-    <section class="container canvas-gen-container">
-        <div class="canvas-container">
-            <!-- <svg viewBox="0 0 1 1"></svg> -->
-            <canvas width="500" height="500" id="meme-canvas" class="meme-canvas" onmousedown="onCanvasMouseDown(event)"
-                onmouseup="onCanvasMouseUp(event)" onmousemove="onCanvasMouseMove(event)">
-                Update your browser to enjoy canvas!
-            </canvas>
-        </div>
+    <section class="canvas-gen-container">
         <div class="canvas-controls">
             <input type="text" name="text" id="text" class="text-input" placeholder="Your awesome text goes here" oninput="onInputUpdate(this.value)" value="">
             <div class="move-lines-controls flex">
-                <button class="control-btn switch-lines" onclick="onSwitchLines()"><img src="./images/icons/up-and-down-opposite-double-arrows-side-by-side.png" alt="switch lines" title="Switch Lines">
-                </button>
-                <button class="control-btn add-line" onclick="onaddNewLine()">
-                    <img src="./images/icons/add.png" alt="add line" title="Add Line">
-                </button>
-                <button class="control-btn delete" onclick="onDeleteLine()">
-                    <img src="./images/icons/trash.png" alt="delete" title="Delete">
-                </button>
-                <!-- Option to move lines with buttons instead of dragging-->
-                <button class="control-btn line-up move-lines" onclick="onMoveLinesUpDown(-10)">up</button>
-                <button class="control-btn line-down move-lines" onclick="onMoveLinesUpDown(10)">down</button>
+                <button class="switch-lines" onclick="onSwitchLines()"></button>
+                <button class="add-line" onclick="onaddNewLine()"></button>
+                <button class="line-up move-lines" onclick="onMoveLinesUpDown(-10)">up</button>
+                <button class="line-down move-lines" onclick="onMoveLinesUpDown(10)">down</button>
             </div>
-            <div class="text-align-controls font-size-controls flex">
-                <button class="control-btn font-decrease font-size-btn" onclick="onChangeFontSize(-1)">
-                    <img src="./images/icons/decrease font - icon.png" alt="decrease font" title="Decrease Font">
-                </button>
-                <button class="control-btn font-increase font-size-btn" onclick="onChangeFontSize(1)">
-                    <img src="./images/icons/increase font - icon.png" alt="increase font" title="Increase Font">
-                </button>
-                <button class="control-btn text-align-right text-align-btn" onclick="onChangeTextAlign('right')">
-                    <img src="./images/icons/align-to-left.png" alt="align right" title="Align Right">
-                </button>
-                <button class="control-btn text-align-center text-align-btn" onclick="onChangeTextAlign('center')">
-                    <img src="./images/icons/center-text-alignment.png" alt="align center" title="Align Center">
-                </button>
-                <button class="control-btn text-align-left text-align-btn" onclick="onChangeTextAlign('left')">
-                    <img src="./images/icons/align-to-right.png" alt="align left" title="Align Left">
-                </button>
+            <div class="text-align-controls flex">
+                <button class="text-align-right text-align-btn" onclick="onChangeTextAlign('right')"></button>
+                <button class="text-align-center text-align-btn" onclick="onChangeTextAlign('center')"></button>
+                <button class="text-align-left text-align-btn" onclick="onChangeTextAlign('left')"></button>
             </div>
-            <div class="font-colors-controls font-family-controls flex">
+            <div class="font-size-controls flex">
+                <button class="font-decrease font-size-btn" onclick="onChangeFontSize(-1)"></button>
+                <button class="font-increase font-size-btn" onclick="onChangeFontSize(1)"></button>
+                <button class="delete" onclick="onDeleteLine()"></button>
+            </div>
+            <div class="font-colors-controls flex">
+                <input type="color" id="bg-color-input" name="bg-color" onchange="onChangeBgColor(this.value)">
+                <input type="color" id="txt-color-input" name="txt-color" onchange="onChangeColor(this.value)">
+            </div>
+            <div class="font-family-controls flex">
                 <select name="font-family" id="font-family-input" onchange="onChangeFontFamily(this.value)">
                     <option value="meme-impact">Impact</option>
                     <option value="Arial">Arial</option>
                     <option value="Tahoma">Tahoma</option>
                     <option value="Verdana">Verdana</option>
                 </select>
-                <span class="bg-color-input control-btn">
-                    <input type="color" id="bg-color-input" name="bg-color" onchange="onChangeBgColor(this.value)">
-                    <img src="./images/icons/paint-board-and-brush.png" alt="fill color" title="Fill Color">
-                </span>
-                <span class="txt-color-input control-btn">
-                    <input type="color" id="txt-color-input" name="txt-color" onchange="onChangeColor(this.value)">
-                    <img src="./images/icons/text stroke.png" alt="text Stroke" title="Text Stroke">
-                </span>
-                
             </div>
-            <!-- <div class="font-family-controls flex"></div> -->
-            <div class="download-share text-align-controls flex">
-                <input class="file-input btn" type="file" name="image" onchange="onUploadImgInput(event)" />
-                
+            
+            <div class="download-share">
+                <a href="#" class="btn btn-download" onclick="onDownloadImg(this)" download="my-canvas.jpg">Download</a>
+          
                 <form action="" method="POST" enctype="multipart/form-data" onsubmit="onFacebookShare(this, event)">
                     <input name="img" id="imgData" type="hidden" />
-                    <button class="btn-share" type="submit">Publish</button>
+                    <button class="btn-share btn btn-download" type="submit">Publish</button>
                     <div class="share-container"></div>
                 </form>
-                
-<button class="btn-download" onclick="onDownloadImg(this)" download="my-canvas.jpg">Download</button>
             </div>
+        </div>
+        <div class="canvas-container">
+            <canvas id="meme-canvas" width="500" height="500" onmousedown="onCanvasMouseDown(event)" onmouseup="onCanvasMouseUp(event)" onmousemove="onCanvasMouseMove(event)">
+                Update your browser to enjoy canvas!
+            </canvas>
         </div>
     </section>
     <footer class="flex justify-center align-center column">
@@ -153,7 +105,6 @@
         <p>@All Rights Reserved 2019</p>
     </footer>
 
-    <!-- <script src="./js/upload-service.js"></script> -->
     <script src="./js/memeService.js"></script>
     <script src="./js/main.js"></script>
 </body>
