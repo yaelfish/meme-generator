@@ -163,6 +163,7 @@ body.canvas-open .canvas-gen-container {
     margin: 5px;
     padding: 20px;
     border: none;
+    cursor: pointer;
 }
 
 #bg-color-input {
@@ -177,6 +178,7 @@ body.canvas-open .canvas-gen-container {
     padding: 20px;
     border: none;
     -webkit-appearance: none;
+    cursor: pointer;
 }
 
 #txt-color-input {
@@ -191,12 +193,14 @@ body.canvas-open .canvas-gen-container {
     padding: 20px;
     border: none;
     -webkit-appearance: none;
+    cursor: pointer;
 }
 
 .download-share {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
+    cursor: pointer;
 }
 
 .btn-download {
@@ -205,22 +209,26 @@ body.canvas-open .canvas-gen-container {
     border-radius: 5px;
     padding: 6px;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
-    width: 100px;
+    width: 110px;
+    text-align: center;
     transition: 0.7s;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 .share {
     background: #4267b2;
     border: 1px solid #4267b2;
+    cursor: pointer;
 }
 
 .text-input {
     display: flex;
     width: 100%;
     padding: 3px;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     height: 43px;
     border-radius: 5px;
     margin-bottom: 5px;
@@ -229,6 +237,10 @@ body.canvas-open .canvas-gen-container {
 
 .font-family-controls.flex {
     margin-bottom: 13px;
+}
+
+.font-color-controls {
+    margin-bottom: 5px;
 }
 
 select {
@@ -247,6 +259,7 @@ select {
     margin: 5px;
     padding: 20px;
     border: none;
+    cursor: pointer;
 }
 
 .font-decrease {
@@ -254,6 +267,7 @@ select {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    cursor: pointer;
 }
 
 .font-increase {
@@ -261,6 +275,7 @@ select {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    cursor: pointer;
 }
 
 .move-lines {
@@ -271,6 +286,7 @@ select {
     text-align: center;
     border: none;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .switch-lines {
@@ -283,6 +299,7 @@ select {
     border-radius: 7px;
     margin: 5px;
     border: none;
+    cursor: pointer;
 }
 
 .add-line {
@@ -295,6 +312,7 @@ select {
     border-radius: 7px;
     margin: 5px;
     border: none;
+    cursor: pointer;
 }
 
 .text-align-btn {
@@ -303,6 +321,7 @@ select {
     border-radius: 7px;
     margin: 5px;
     border: none;
+    cursor: pointer;
 }
 
 .text-align-left {
@@ -310,6 +329,7 @@ select {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    cursor: pointer;
 }
 
 .text-align-center {
@@ -317,6 +337,7 @@ select {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    cursor: pointer;
 }
 
 .text-align-right {
@@ -324,6 +345,7 @@ select {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    cursor: pointer;
 }
 
 /* Gallery */
@@ -339,9 +361,9 @@ body.canvas-open .gallery-container {
 }
 
 .img-container img {
-    /* min-height: 150px; */
     width: 100%;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .canvas-gen-container {
@@ -440,6 +462,12 @@ footer {
     }
     #meme-canvas {
         width: 500px;
+    }
+}
+
+@media (max-width: 840px) {
+    #meme-canvas {
+        width: 460px;
     }
 }
 
