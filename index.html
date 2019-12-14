@@ -32,23 +32,28 @@
             </ul>
         </nav>
     </header>
-    <section class="search-container">
-        <div class="search-line">
-            <form >
-                <input list="keywords" name="keywords" placeholder="Enter search keyword">
-                <datalist id="keywords">
-                    <option value="Happy">
-                    <option value="Crazy">
-                    <option value="Sarcastic">
-                    <option value="Animal">
-                    <option value="Baby">
-                </datalist>
-                <button class="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-        <div class="keywords-container"></div>
-    </section>
-    <main class="gallery-container flex justify-center container"></main>
+    <!-- Search bar and Gallery -->
+    <main>
+        <section class="search-container">
+            <div class="search-line">
+                <form>
+                    <input list="keywords" name="keywords" placeholder="Enter search keyword">
+                    <datalist id="keywords">
+                        <option value="Happy">
+                        <option value="Crazy">
+                        <option value="Sarcastic">
+                        <option value="Animal">
+                        <option value="Baby">
+                    </datalist>
+                    <button class="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <div class="keywords-container"></div>
+        </section>
+        <section class="gallery-container flex justify-center container">
+        </section>
+    </main>
+    <!-- About Section -->
     <section id="about" class="about-container flex justify-center align-center">
         <img class="img-about" src="./images/yael.jpg" alt="">
         <div class="about-text-container flex column">
@@ -69,6 +74,7 @@
             </ul>
         </div>
     </section>
+    <!-- Canvas Section -->
     <section class="canvas-gen-container">
         <div class="canvas-controls">
             <input type="text" name="text" id="text" class="text-input" placeholder="Your awesome text goes here" oninput="onInputUpdate(this.value)" value="">
@@ -121,6 +127,5 @@
 
     <script src="./js/memeService.js"></script>
     <script src="./js/main.js"></script>
-    <!-- <script src="./js/dragInCanvas.js"></script> -->
 </body>
 </html>

@@ -26,8 +26,6 @@ let gMeme = {
     selectedTxtIdx: 0,
     txts: [
         createTxtObject('', 40, 'center', 200, 70, 'black', 'white', 'impact',false)
-        // createTxtObject('', 40, 'center', 'bottom', 200, 400, 'black', 'white', 'impact')
-        // createTxtObject('', 40, 'center', 'middle', 200, 180, 'black', 'white', 'impact')
     ]
 };
 

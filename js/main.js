@@ -6,8 +6,8 @@ let gOffsetX;
 let gOffsetY;
 let gElImg;
 let gCurrTxtLine = 0;
-let gLastX = 200;
-let gLastY = 70;
+let gLastX;
+let gLastY;
 let isDragMode = false;
 
 /** Gallery Controller **/
@@ -73,62 +73,45 @@ function initCanvas() {
     HEIGHT = gCanvas.height;
     gCtx.fillStyle = 'white';
     gCtx.strokeStyle = 'black';
+    setTouchListeners();
     renderCanvas();
 }
+
+function setTouchListeners() {
+    gCanvas.addEventListener('touchstart', onCanvasMouseDown);
+    gCanvas.addEventListener('touchmove', onCanvasMouseMove);
+    gCanvas.addEventListener('touchend', onCanvasMouseUp);
+}
+
 
 function onCanvasMouseDown(e) {
     e.preventDefault();
     e.stopPropagation();
-
+    
     let currMousePosX = parseInt(e.clientX - gOffsetX);
     let currMousePosY = parseInt(e.clientY - gOffsetY);
 
+    console.log('currMousePosX:', currMousePosX, 'currMousePosY:', currMousePosY );
+    renderCanvas();
     // test each line to see if mouse is inside
     isDragMode = false;
     gMeme.txts.forEach((text) => {
-        let textLength = (text.line.length * text.size) / 2;
-        console.log('textLength', textLength);
-        // if (currMousePosX > text.posX &&
-        //     currMousePosX < text.posX + textLength &&
-        //     currMousePosY > text.posY &&
-        //     currMousePosY < text.posY + text.size) 
-            
-         if   ((e.pageX < (gLastX + textLength + gCanvas.offsetLeft)) &&
-        (e.pageX > (gLastX - textLength + gCanvas.offsetLeft)) &&
-        (e.pageY < (gLastY + text.size + gCanvas.offsetTop)) &&
-        (e.pageY > (gLastY - text.size + gCanvas.offsetTop)))
+        let textLength = (text.line.length * text.size) / 2;   
+         if   ((e.pageX < (text.posX + textLength + gOffsetX)) &&
+        (e.pageX > (text.posX - textLength + gOffsetX)) &&
+        (e.pageY < (text.posY + text.size + gOffsetY)) &&
+        (e.pageY > (text.posY - text.size + gOffsetY)))
             {
                 isDragMode = true;
                 text.isDragging = true;
-                console.log('is dragging', text);
-                
+                text.posX = e.pageX - gOffsetX;
+                text.posY = e.pageY - gOffsetY;           
         }
     });
 
     // save the current mouse position
     gLastX = currMousePosX;
     gLastY = currMousePosY;
-
-
-    console.log('gLastX', gLastX);
-    // gLastX = gMeme.txts[gCurrTxtLine].posX;
-    // gLastY = gMeme.txts[gCurrTxtLine].posY;
-    // let text = gMeme.txts[gCurrTxtLine].line;
-    // let fontSize = gMeme.txts[gCurrTxtLine].size;
-    // let textLength = (text.length * fontSize) / 2;
-
-
-    // if ((e.pageX < (gLastX + textLength + gCanvas.offsetLeft)) && 
-    //     (e.pageX > (gLastX - textLength + gCanvas.offsetLeft)) && 
-    //     (e.pageY < (gLastY + fontSize + gCanvas.offsetTop)) &&
-    //     (e.pageY > (gLastY - fontSize + gCanvas.offsetTop)))
-    //     {
-    //         gMeme.txts[gCurrTxtLine].posX = e.pageX - gCanvas.offsetLeft;
-    //         gMeme.txts[gCurrTxtLine].posY = e.pageY - gCanvas.offsetTop;
-
-    //         isDragMode = true;
-    //         gCanvas.onmousemove = onCanvasMouseMove;
-    // }
 }
 
 function onCanvasMouseUp(e) {

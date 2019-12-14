@@ -128,7 +128,7 @@ header, footer {
 
 /* Canvas mode */
 
-body.canvas-open .gallery-container {
+body.canvas-open main {
     visibility: hidden;
     opacity: 0;
     display: none;
@@ -176,6 +176,7 @@ body.canvas-open .canvas-gen-container {
     margin: 5px;
     padding: 20px;
     border: none;
+    -webkit-appearance: none;
 }
 
 #txt-color-input {
@@ -189,6 +190,7 @@ body.canvas-open .canvas-gen-container {
     margin: 5px;
     padding: 20px;
     border: none;
+    -webkit-appearance: none;
 }
 
 .btn-download {
@@ -325,6 +327,7 @@ body.canvas-open .gallery-container {
 }
 
 .canvas-gen-container {
+    padding: 20px;
     visibility: hidden;
     opacity: 0;
     margin-bottom: 20px;
