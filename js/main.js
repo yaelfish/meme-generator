@@ -64,7 +64,14 @@ function initCanvas() {
     HEIGHT = gCanvas.height;
     gCtx.fillStyle = 'white';
     gCtx.strokeStyle = 'black';
+    setTouchListeners();
     renderCanvas();
+}
+
+function setTouchListeners() {
+    gCanvas.addEventListener('touchstart', onCanvasMouseDown);
+    gCanvas.addEventListener('touchmove', onCanvasMouseMove);
+    gCanvas.addEventListener('touchend', onCanvasMouseUp);
 }
 
 
@@ -75,6 +82,7 @@ function onCanvasMouseDown(e) {
     let currMousePosX = parseInt(e.clientX - gOffsetX);
     let currMousePosY = parseInt(e.clientY - gOffsetY);
 
+    console.log('currMousePosX:', currMousePosX, 'currMousePosY:', currMousePosY );
     renderCanvas();
     // test each line to see if mouse is inside
     isDragMode = false;
@@ -183,13 +191,14 @@ function drawImg() {
     }
 }
 
-function drawText(text, size, align, posX, posY, color, bgColor, fontFamily = 'impact', isDragging) {
+function drawText(text, size, align, baseline, posX, posY, color, bgColor, fontFamily = 'impact', isDragging) {
     gCtx.save()
     gCtx.font = `${size}px ${fontFamily}`;
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = color;
     gCtx.fillStyle = bgColor;
     gCtx.textAlign = align;
+    gCtx.textBaseline = baseline;
     gCtx.fillText(text, posX, posY);
     gCtx.strokeText(text, posX, posY);
     gCtx.restore()
